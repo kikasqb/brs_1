@@ -1,0 +1,51 @@
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+.navbar-brand,
+.navbar-nav .hear-item {
+  line-height: 60px;
+  height: 80px;
+  font-size:120%;
+  vertical-align: middle;
+}
+.header-nav-item {
+  position: relative;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.user-element {
+  line-height: 20px;
+  height: 20px;
+}
+.top-space {
+  margin-top: 120px;
+  margin-bottom: 100px;
+}
+.row {
+  margin-bottom: 5px;
+}
+#slider {
+  height: 364px;
+  background: url(/assets/background.jpg) repeat-x;
+  padding-top: 15px;
+}
+#book-cover {
+  border-radius: 5px;
+}
+.slide-description {
+  background: #fff;
+  float: right;
+  min-height: 100%;
+  border-radius: 5px;
+  box-shadow: 2px 0px 5px rgba(0,0,0,0.5);
+  padding: 5px;
+  height: 300px;
+}
+.inner-sd {
+  border: 1px solid #e9e9e9;
+  border-radius: 5px;
+  height: 100%;
+  padding: 20px 30px;
+}

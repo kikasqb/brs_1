@@ -1,0 +1,24 @@
+<% provide :title, t(:home) %>
+<div class="center jumbotron row">
+  <h2><%= t :wellcome_to %></h2>
+  <%= link_to t(:sign_up_now), "#",
+    class: "btn btn-lg btn-primary" %>
+</div>
+
+<div class="row">
+  <section id="slider">
+    <div class="container">
+      <div class="col-md-3 col-xs-0 text-center book-cover">
+        <%= image_tag "", size: Settings.size_of_book_cover %>
+      </div>
+      <div class="col-md-9 col-xs-12 slide-description">
+        <div class="book-title">
+        </div>
+        <div class="book-introduce">
+        </div>
+        <div class="well">
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
