@@ -15,3 +15,33 @@ en:
   birdth_day: "Birdthday"
   address: "Address"
   admin: "Admin"
+  sign_up: "Sign up"
+  sign_in: "Sign in"
+  update: "Update"
+  sexs:
+    male: "Male"
+    female: "Female"
+    gay: "Gay"
+    lesbian: "Lesbian"
+  devise:
+    registrations:
+      form:
+        confirmation: "Confirmation"
+      edit:
+        edit: " Edit %{human}"
+        update_your_profile: "Update your account"
+        currently_waiting_confirmation: "Currently waiting confirmation for: %{for}"
+        note: "leave blank if you don't want to change it"
+      new:
+        create_your_account: "Create your account"
+    sessions:
+      form:
+        remember_me: "Remember me"
+    shared:
+      links:
+        log_in: "Log in"
+        sign_up: "Sign up"
+        forgot_your_password: "Forgot your password?"
+        not_confirmation: "Didn't receive confirmation instructions?"
+        not_unlock: "Didn't receive unlock instructions?"
+        sign_in_with: "Sign in with %{with}"

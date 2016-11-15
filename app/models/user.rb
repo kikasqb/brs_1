@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
-        :recoverable, :rememberable, :trackable, :validatable
+    :recoverable, :rememberable, :trackable, :validatable
   attr_accessor :protected_token
   has_many :activities, dependent: :destroy
   has_many :active_relationships,
@@ -28,8 +28,6 @@ class User < ApplicationRecord
   validates :password, presence: true,
     length: {minimum: Settings.min_lenght_password,
     maximum: Settings.max_length_password}, allow_nil: true
-
-  before_save :format_value
 
   mount_uploader :avatar, PictureUploader
 end
