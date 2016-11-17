@@ -1,0 +1,40 @@
+<div class="col-md-4 col-xs-6 text-center">
+  <div class="book">
+    <p><%= show_cover book %></p>
+    <p><%= show_book_title book %></p>
+    <p class="center"><span class="stars"><%= book.rate %></span></p>
+    <% if user_signed_in? %>
+      <p class="form-inline">
+        <div class="dropdown">
+          <%= link_to "#", class: "dropdown-toggle btn btn-default",
+            data: {toggle: "dropdown", role: "button"},
+            aria: {haspopup: "true", expanded: "false"} do %>
+            <%= t ".mark" %>
+            <span class="caret" ></span>
+          <% end %>
+          <%= link_to "#", class: "btn btn-warning" do %>
+            <i class="glyphicon glyphicon-bookmark"> </i>
+            <%= t ".favorite" %>
+          <% end %>
+          <ul class="dropdown-menu" >
+            <li>
+              <%= link_to "#" do %>
+                <i class="glyphicon glyphicon-tasks"></i>
+                <%= t ".reading" %>
+                <i class="glyphicon glyphicon-ok pull-right"
+                  id="<%= "mar-reading-book-#{book.id}" %>"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to "#" do %>
+                <i class="glyphicon glyphicon-bookmark"></i>
+                <%= t ".read" %>
+                <i class="loader pull-right"></i>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </p>
+    <% end %>
+  </div>
+</div>

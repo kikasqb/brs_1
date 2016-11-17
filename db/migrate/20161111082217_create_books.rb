@@ -7,7 +7,8 @@ class CreateBooks < ActiveRecord::Migration[5.0]
       t.string :author
       t.integer :number_of_pages
       t.string :introduce
-      t.boolean :bought
+      t.string :cover
+      t.boolean :bought, default: true
       t.float :rate, default: Settings.default_rate
       t.boolean :deleted, default: false
 

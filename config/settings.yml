@@ -2,6 +2,9 @@ default_icon: "root_icon.png"
 default_avata: "/assets/user-default.png"
 icon_size: "80x80"
 size_of_book_cover: "200x300"
+default_book_conver: "default-book-cover.jpg"
+avatar_size: "130x130"
+avatar_min_size: "70x70"
 default_rate: 1
 max_lenght_title: 70
 max_lenght_name: 50
@@ -12,3 +15,6 @@ max_lenght_name_of_book: 255
 max_lenght_content_comment: 1000
 max_lenght_request_description: 1000
 max_length_password: 100
+max_of_rating_points: 5
+length_sub_introduce: 255
+length_sub_title: 30
