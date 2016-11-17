@@ -1,0 +1,12 @@
+<% provide :title, t(:sign_in) %>
+<% provide :button_text, t(:sign_in) %>
+
+<div class="col-md-2 col-xs-0">
+  <h1>
+    <%= t :sign_in %>
+  </h1>
+</div>
+
+<div class="col-md-8 col-xs-12">
+  <%= render "devise/sessions/form" %>
+</div>
