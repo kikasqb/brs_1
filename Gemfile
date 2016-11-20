@@ -20,10 +20,14 @@ gem "bootstrap-kaminari-views"
 gem "devise"
 gem "ckeditor"
 gem "cancancan"
+gem "whenever"
+gem "sidekiq"
+gem "sinatra", require: false
 
 group :development, :test do
   gem "sqlite3", "1.3.11"
   gem "byebug", "9.0.0", platform: :mri
+  gem "pry"
 end
 
 group :development do

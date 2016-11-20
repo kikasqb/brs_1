@@ -1,0 +1,5 @@
+<h1><%= t :hello, name: @request.user.name %></h1>
+<p>
+  <%= t(".content", request: link_to(t(".request"), @request),
+    title: link_to(@request.book.title, @request.book)).html_safe %>
+</p>

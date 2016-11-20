@@ -4,4 +4,8 @@ class Request < ApplicationRecord
 
   validates :description, presence: true,
     length: {maximum: Settings.max_lenght_request_description}
+
+  scope :have_processed, -> do
+    joins(:book).where "processed = ? OR books.bought = ?", true, true
+  end
 end

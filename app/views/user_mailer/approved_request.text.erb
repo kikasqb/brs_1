@@ -1,0 +1,4 @@
+<%= t :hello, name: @request.user.name %>
+<%= t(".content", request: t(".request"), title: @request.book.title) %>
+<%= books_url @request.book %>
+<%= requests_url @request %>

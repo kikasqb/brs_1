@@ -18,6 +18,16 @@ en:
   sign_up: "Sign up"
   sign_in: "Sign in"
   update: "Update"
+  saved: "Saved"
+  destroy_request: "Finish destroy all requests haved processed!"
+  rake:
+    create_admin:
+      input: "Input adimn profile - %{attributes}:\t"
+      email: "Email"
+      name: "Name"
+      address: "Address"
+      password: "Password"
+      confirmation: "Confirmation password"
   sexs:
     male: "Male"
     female: "Female"
@@ -45,3 +55,13 @@ en:
         not_confirmation: "Didn't receive confirmation instructions?"
         not_unlock: "Didn't receive unlock instructions?"
         sign_in_with: "Sign in with %{with}"
+    approved_request: "Approved books requests."
+  notification: "%{user} has make a new %{new_object} at {%notifica}"
+  hello: "Hi %{name}"
+  user_mailer:
+    approved_request:
+      content: "Your %{request} for %{title} - book has been processed"
+    notification:
+      book: "Book: %{title}"
+      review: "Review: %{title} - %{user}"
+      new: "Have new %{type} make by %{user}"

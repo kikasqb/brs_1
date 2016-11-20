@@ -1,0 +1,13 @@
+<h1><%= t :hello, name: @notifica.name %></h1>
+<h3>
+<% if @notifica.is_a? Review %>
+  <%= t ".book", title: @notifica.book.title %>
+<% else %>
+  <%= t ".review", title: @notifica.review.title,
+    user: @notifica.review.user.name %>
+<% end %>
+</h3>
+<p>
+  <%= t(".new", type: link_to(@notifica.class.name, @notifica.review),
+    user: link_to(@notifica.name, @notifica.user)).html_safe %>
+</p>
