@@ -28,6 +28,11 @@ en:
       address: "Address"
       password: "Password"
       confirmation: "Confirmation password"
+  manage: "Manage"
+  search_placeholder: "Enter here..."
+  search: "Search"
+  confirm_delete: "Are you sure to delete : %{type} : %{name}?"
+  delete: "Delete"
   sexs:
     male: "Male"
     female: "Female"
@@ -65,3 +70,31 @@ en:
       book: "Book: %{title}"
       review: "Review: %{title} - %{user}"
       new: "Have new %{type} make by %{user}"
+  layouts:
+    left_bar:
+      books: "Books"
+      categories: "Categories"
+      users: "Users"
+    admin_layout:
+      users: "Users"
+  admin:
+    users:
+      index:
+        title: "All Users"
+        all: "All users"
+      user:
+        follow: "Follow"
+        user: "User"
+      user_info:
+        birthday: "Birthday : %{birthday}"
+        address: "Address : %{address}"
+        following: "following"
+        followers: "followers"
+      users:
+        deleted: "User : %{name} be deleted"
+        failed: "Failde to delete user %{name}"
+        placeholder: "Enter here"
+      follow:
+        follow: "Follow"
+      unfollow:
+        unfollow: "Unfollow"

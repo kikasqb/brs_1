@@ -11,10 +11,9 @@
   <body>
     <%= render "layouts/header" %>
     <div class="container">
-      <% flash.each do |message_type, message| %>
-        <%= content_tag :div, message.html_safe,
-          class: "alert alert-#{message_type}" %>
-      <% end %>
+      <div class="system-messages col-md-4 col-xs-12 pull-right" id="flash-messages">
+        <%= render "layouts/flash", messages: flash %>
+      </div>
       <div class="row">
         <%= yield %>
       </div>
