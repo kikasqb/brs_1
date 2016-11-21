@@ -1,0 +1,54 @@
+<div class="col-md-3 col-xs-0 text-center book-cover">
+  <%= show_cover @book %>
+</div>
+<div class="col-md-9 col-xs-12">
+  <div class="book-description col-xs-12">
+    <div class="row">
+      <div class="book-info col-md-6 col-xs-12">
+        <h2 class="book-title">
+          <%= @book.title %>
+        </h2>
+        <p>
+          <%= t ".category" %>
+          <b><%= @book.name %></b>
+        </p>
+        <p>
+          <%= t ".author" %>
+          <b> <%= @book.author %></b>
+        </p>
+        <p>
+          <%= t ".number_of_pages" %>
+          <b> <%= @book.number_of_pages %></b>
+        </p>
+        <% if user_signed_in? %>
+          <p id="votes">
+            <i class="glyphicon glyphicon-user"></i>
+            <%= t ".votes", votes: @book.reviews.size %>
+          </p>
+        <% end %>
+      </div>
+      <div class="book-introduce panel panel-info col-md-6 col-xs-12">
+        <h5 class="panel panel-header"><%= t ".introduce" %></h5>
+        <p>
+          <%= show_book_introduce @book %>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-xs-12">
+        <span class="stars"><%= @book.rate %></span>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <span><%= t ".user_rate", votes: 0 %></span>
+        <div class="rating">
+          <% Settings.max_of_rating_points.times do |i| %>
+            <span id="<%= "star-#{i}" %>"
+              onclick="<%= "rate(#{i}, #{Settings.max_of_rating_points});" %>">
+              &#9734;
+            </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

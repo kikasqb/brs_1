@@ -1,0 +1,21 @@
+<% provide :title, t(".title") %>.
+<div class="row">
+  <%= render "search_form" %>
+</div>
+<hr>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 col-xs-0 col-sm-0">
+      <nav class="nav nav-sidebar navbar-default">
+      </nav>
+    </div>
+    <div class="col-md-9 col-xs-12">
+      <div class="row" id="books">
+        <%= render @books if @books.any? %>
+      </div>
+      <div class="row text-center" id="paginate">
+        <%= paginate @books, theme: "twitter-bootstrap-3" if @books.any? %>
+      </div>
+    </div>
+  </div>
+</div>

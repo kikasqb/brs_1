@@ -1,0 +1,23 @@
+<div class="row">
+  <%= form_tag books_path, method: :get, id: "search_books_form" do %>
+    <div class="form-inline pull-right">
+      <div class="form-group">
+        <%= label_tag :Category %>
+        <%= select_tag :category_id,
+          options_from_collection_for_select(@all_categories,
+          "id", "name", params[:category_id]), include_blank: t("all"),
+          class: "form-control", onchange: "submit_books_search_form();",
+          id: "select_category_id" %>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <%= text_field_tag :key, params[:key],
+            class: "form-control",placeholder: t(:search_placeholder), id:"search_books" %>
+          <div class="input-group-btn">
+            <%= submit_tag t(:search), class: "btn btn-info" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -26,15 +26,16 @@
 .row {
   margin-bottom: 5px;
 }
-#slider {
+#slider, .book-background {
   height: 364px;
   background: url(/assets/background.jpg) repeat-x;
   padding-top: 15px;
-}
-#book-cover {
   border-radius: 5px;
 }
-.slide-description {
+#book-cover, .book-cover {
+  border-radius: 5px;
+}
+.slide-description, .book-description {
   background: #fff;
   float: right;
   min-height: 100%;
@@ -65,4 +66,138 @@
   border-color: #d6e9c6;
   color: #468847;
   text-align: left;
+}
+.book-description{
+  padding: 15px;
+  .row{
+    margin: 5px;
+  }
+}
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: left;
+  color: gold;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  padding-left: 5px;
+  font-size: 30px;
+
+}
+.rating > span:hover,
+.rating > span:hover ~ span {
+  color: transparent;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+  content: '\2605';
+  position: absolute;
+  left: 0;
+  color: gold;
+}
+.rating > span:hover:before {
+  content: '\2605';
+  position: absolute;
+  left: 0;
+  color: gold;
+}
+span.stars, span.stars span {
+  display: block;
+  background: url(/assets/stars.png) 0 -33px repeat-x;
+  width: 160px;
+  height: 32px;
+  background-size: 32px 64px;
+  margin-bottom: 5px;
+}
+span.stars span {
+  background-position: 0 0;
+}
+
+.review-rate{
+  color: gold;
+}
+.book-info{
+  padding-left: 10px;
+  b{
+    font-size: 18px;
+  }
+}
+.book-introduce{
+  text-align: left;
+}
+
+.book{
+  .stars{
+    text-align: center;
+  }
+}
+.review{
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  ol{
+    margin-left: 10px;
+  }
+  .comment{
+    border-top: 1px solid #e8e8e8;
+    margin-top: 5px;
+    margin-left: 30px;
+  }
+}
+.center {
+  margin: auto;
+  width: 50%;
+}
+.dropdown-menu{
+  width: 100%;
+}
+.loader {
+  border: 7px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 7px solid #46466d;
+  border-bottom: 7px solid #46466d;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+@-webkit-keyframes spin {
+  0% {-webkit-transform: rotate(0deg);}
+  100% {-webkit-transform: rotate(360deg);}
+}
+@keyframes spin {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+.dropdown-menu > li > label:hover, .dropdown-menu > li > label:focus {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.42857143;
+  color: #333333;
+  white-space: nowrap;
+}
+.dropdown-menu > li > label {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.42857143;
+  color: #333333;
+  white-space: nowrap;
+}
+.system-messages{
+  position: fixed;
+  z-index: 2;
+  border-radius: 10% solid #46466d;
+  float: right;
+  right: 5%;
+}
+.book{
+  border: 0.1px outset ;
+  border-radius: 5%;
+  margin-bottom: 5px;
 }

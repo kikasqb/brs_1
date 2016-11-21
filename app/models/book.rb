@@ -12,4 +12,11 @@ class Book < ApplicationRecord
     length: {maximum: Settings.max_lenght_book_introduce}
 
   default_scope {where deleted: false}
+
+  mount_uploader :cover, PictureUploader
+
+  delegate :name, to: :category, allow_nil: true
+
+  scope :search, ->keyword {where "title LIKE ?", "%#{keyword}%" if keyword.present?}
+  scope :of_category, ->category_id {where category_id: category_id if category_id.present?}
 end
