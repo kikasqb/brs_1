@@ -7,4 +7,6 @@ Rails.application.routes.draw do
     resources :books, except: :show
     resources :categories, except: :show
   end
+  require "sidekiq/web"
+  mount Sidekiq::Web, at: "/sidekiq"
 end
