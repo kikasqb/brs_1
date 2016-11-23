@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :books, except: :show
     resources :categories, except: :show
+    resources :users, only: [:index, :destroy]
+    resources :requests, except: [:new, :create]
   end
   require "sidekiq/web"
   mount Sidekiq::Web, at: "/sidekiq"

@@ -30,4 +30,6 @@ class User < ApplicationRecord
     maximum: Settings.max_length_password}, allow_nil: true
 
   mount_uploader :avatar, PictureUploader
+
+  scope :search, ->keyword {where "name LIKE ?", "%#{keyword}%"}
 end

@@ -8,7 +8,7 @@ class Ability
     else
       can :read, :all
       can :manage, [Request, Comment, Review, Favorite, Like], user_id: user.id
-      can :manage, Relationship, follower_id: user_id: user.id
+      can :manage, Relationship, follower_id: user.id
     end
   end
 end

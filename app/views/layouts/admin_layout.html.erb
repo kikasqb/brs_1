@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield :title %></title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    "application", media: "all",
+      "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
+    <%= favicon_link_tag Settings.default_icon %>
+  </head>
+  <body>
+    <%= render "layouts/header" %>
+    <div class="container">
+      <div class="system-messages col-md-4 col-xs-12 pull-right" id="flash-messages">
+        <%= render "layouts/flash", messages: flash %>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <span class="glyphicon glyphicon-user"></span>
+                  <%= link_to t(".users"), admin_users_path %>
+                </h4>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <%= link_to "#collapseCategories", data: {toggle: "collapse",
+                    parent: "#accordion"} do %>
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                    <%= t ".categories" %>
+                  <% end %>
+                </h4>
+              </div>
+              <div id="collapseCategories" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <table class="table">
+                    <tr>
+                      <td>
+                        <%= link_to admin_categories_path do %>
+                          <i class="glyphicon glyphicon-th-list"></i>
+                          <%= t ".index" %>
+                        <% end %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <%= link_to new_admin_category_path do %>
+                          <i class="glyphicon glyphicon-pencil text-primary"></i>
+                          <%= t ".new" %>
+                        <% end %>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <%= link_to "#collapseBooks", data: {toggle: "collapse",
+                    parent: "#accordion"} do %>
+                    <span class="glyphicon glyphicon-book"></span>
+                    <%= t ".books" %>
+                  <% end %>
+                </h4>
+              </div>
+              <div id="collapseBooks" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <table class="table">
+                    <tr>
+                      <td>
+                        <%= link_to admin_books_path do %>
+                          <i class="glyphicon glyphicon-th-list"></i>
+                          <%= t ".index" %>
+                        <% end %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <%= link_to new_admin_book_path do %>
+                          <i class="glyphicon glyphicon-pencil text-primary"></i>
+                          <%= t ".new" %>
+                        <% end %>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <span class="glyphicon glyphicon-asterisk"></span>
+                  <%= link_to t(".requests"), admin_requests_path %>
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-9 col-md-9">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

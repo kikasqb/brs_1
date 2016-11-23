@@ -1,0 +1,7 @@
+<% messages.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %> alert-auto-hide">
+    <span><%= message %></span>
+    <%= link_to t("entities.close").html_safe, "#", class: "close",
+      data: {dismiss: "alert"} %>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+<tr id="user_content_id_<%= user.id %>">
+  <td><%= user.id %></td>
+  <td><%= user.name %></td>
+  <td><%= user.sex %></td>
+  <td><%= user.birthday %></td>
+  <td>
+    <% if user_signed_in? && current_user != user && current_user.admin?%>
+      <%= button_tag t(:delete),class: "btn btn-danger",
+        onclick: "deleteUser('#{user.id}', '#{t(:confirm_delete,
+        type: t(".user"), name: user.name)}')" %>
+    <% end %>
+  </td>
+</tr>

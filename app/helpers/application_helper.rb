@@ -16,4 +16,8 @@ module ApplicationHelper
   def show_book_title book
     truncate book.title, length: Settings.length_sub_title, separator: " "
   end
+
+  def active_class link_path
+    request.original_fullpath.include?(link_path) ? "active" : ""
+  end
 end

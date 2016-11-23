@@ -201,3 +201,35 @@ span.stars span {
   border-radius: 5%;
   margin-bottom: 5px;
 }
+.fixed{
+  position: fixed;
+  width: 20%;
+}
+.glyphicon {
+  margin-right:10px;
+}
+.panel-body {
+  padding:0px;
+}
+.panel-body table tr td {
+ padding-left: 15px
+}
+.panel-body .table {
+  margin-bottom: 0px;
+}
+@media screen and (min-width: 769px) {
+  #nav-tabs-wrapper {
+    display: block!important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .nav-tabs-dropdown {
+    display: block;
+  }
+  #nav-tabs-wrapper {
+    display: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    text-align: center;
+  }
+}
