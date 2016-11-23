@@ -1,0 +1,10 @@
+<% provide :title, t(".title", name: @category.name) %>
+<% provide :button_text, t(".btn_text") %>
+<% provide :form_method, :patch %>
+<% provide :form_url, admin_category_path(@category) %>
+<div class="row">
+  <div class="col-xs-12" >
+    <h1><%= t ".edit" %></h1>
+    <%= render "form" %>
+  </div>
+</div>

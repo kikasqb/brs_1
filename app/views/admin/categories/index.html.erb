@@ -1,0 +1,74 @@
+<% provide :title, t(".title") %>
+<% provide :button_text, t(".btn_text") %>
+<% provide :form_method, :post %>
+<% provide :form_url, admin_categories_path(@category) %>
+<h1><%= t ".title" %></h1>
+<hr>
+<div class="row">
+  <%= link_to "#",
+    data: {toggle: "modal", target: "#new-category-modal"},
+    class: "btn btn-primary" do %>
+    <i class="glyphicon glyphicon-pencil" ></i>
+    <%= t ".add_new_category" %>
+  <% end %>
+  <div class="col-md-5 col-xs-12 pull-right">
+    <%= form_tag admin_categories_path, method: :get do %>
+      <div class="panel">
+        <div class="input-group pull-right">
+          <%= text_field_tag :key, params[:key],
+            class: "form-control",placeholder: t(:search_placeholder),
+            id:"search_categories" %>
+          <div class="input-group-btn">
+            <%= submit_tag t(:search), class: "btn btn-info" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<hr>
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th><%= t :id %></th>
+      <th><%= t :name %></th>
+      <th><%= t ".created" %></th>
+    </tr>
+  </thead>
+  <div class="alert alert-danger hide" id="connect_failed">
+    <label >
+      <%= t :failed_connection %>
+    </label>
+  </div>
+  <tbody id="result_search">
+    <% if @categories.any? %>
+      <%= render @categories %>
+    <% end %>
+  </tbody>
+</table>
+<div class="row text-center" id="will_paginate">
+  <%= paginate @categories, theme: "twitter-bootstrap-3" if @categories.any? %>
+</div>
+<div class="modal fade" id="new-category-modal" role="dialog">
+  <div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h3 class="modal-title glyphicon glyphicon-edit">
+          <%= t ".new" %>
+        </h3>
+      </div>
+      <div class="modal-body">
+        <%= render "form" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"
+          data-dismiss="modal">
+          <%= t ".close" %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

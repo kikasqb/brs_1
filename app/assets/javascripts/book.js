@@ -31,7 +31,7 @@ function submit_books_search_form(){
   str = $('#search_books_form').serialize();
   $.ajax({
     type: "GET",
-    url: '/books?' + str,
+    url: $('#search_books_form').attr('action') + '?' + str,
     dataType: "script",
     success: function(data){
     },
@@ -114,6 +114,33 @@ function unfavorite(favoriteID, bookID){
       connect_failed.show();
     },
   });
+function deleteBook(id,strConfirm){
+  if (confirm(strConfirm)) {
+    $.ajax({
+      type: 'DELETE',
+      url: 'books/' + id,
+      success: function(data){
+        $("#tr_book_id_" + id).fadeOut('slow');
+      },
+      error: function(error_message) {
+        $("#connect_failed").show();
+      },
+    });
+  }
+}
+function deleteCategory(id,strConfirm){
+  if (confirm(strConfirm)) {
+    $.ajax({
+      type: 'DELETE',
+      url: 'categories/' + id,
+      success: function(data){
+        $("#tr_category_id_" + id).fadeOut('slow');
+      },
+      error: function(error_message) {
+        $("#connect_failed").show();
+      },
+    });
+  }
 }
 function init_config_book() {
   $('span.stars').stars();
@@ -123,6 +150,16 @@ function init_config_book() {
   });
   $('.mark-item').click(function(e) {
     e.stopPropagation();
+  });
+  $('#search_user_box').keyup(function () {
+    key = $(this).val();
+    searchUser('users?key=' + key);
+  });
+  $('#search_follows_box').keyup(function () {
+    key = $(this).val();
+    strUrl = window.location.href.split("?");
+    url = strUrl[0] + '?key=' +key;
+    searchUser(url);
   });
   jQuery('div.dropdown').hover(function() {
     jQuery(this).find('.dropdown-menu').stop(true, true).delay(500).fadeIn(500);

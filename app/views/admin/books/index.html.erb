@@ -1,0 +1,94 @@
+<% provide :title, t(".title_page")%>
+<% provide :button_text, t(".add_new_book")%>
+<% provide :form_method, :post %>
+<% provide :form_url, admin_books_path(@book) %>
+<div class="row">
+  <h1><%= t ".books" %></h1>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-2 col-xs-12">
+    <%= link_to "#",
+      data: {toggle: "modal", target: "#new-book-modal"},
+      class: "btn btn-primary" do %>
+      <i class="glyphicon glyphicon-pencil" ></i>
+      <%= t ".add_new_book" %>
+    <% end %>
+  </div>
+  <div class="col-md-10 col-xs-12">
+    <div class="row">
+      <%= form_tag admin_books_path, method: :get, id: "search_books_form" do %>
+        <div class="form-inline pull-right">
+          <div class="form-group">
+            <%= label_tag :Category %>
+            <%= select_tag :category_id,
+              options_from_collection_for_select(@categories,
+              "id", "name", params[:category_id]), include_blank: t("all"),
+              class: "form-control", onchange: "submit_books_search_form();",
+              id: "select_category_id" %>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <%= text_field_tag :key, params[:key],
+                class: "form-control",placeholder: t(:search_placeholder), id:"search_books" %>
+              <div class="input-group-btn">
+                <%= submit_tag t(:search), class: "btn btn-info" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="new-book-modal" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h3 class="modal-title glyphicon glyphicon-edit">
+          <%= t ".book" %>
+        </h3>
+      </div>
+      <div class="modal-body">
+        <%= render "form" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"
+          data-dismiss="modal">
+          <%= t ".close" %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th><%= t :id %></th>
+        <th><%= t ".title" %></th>
+        <th><%= t ".category" %></th>
+        <th><%= t ".publish_date" %></th>
+        <th><%= t ".author" %></th>
+        <th><%= t ".number_of_pages" %></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <div class="alert alert-danger hide" id="connect_failed">
+      <label >
+        <%= t :failed_connection %>
+      </label>
+    </div>
+    <tbody id="books">
+      <%= render @books if @books.any? %>
+    </tbody>
+  </table>
+  <div class="row text-center" id="paginate">
+    <%= paginate @books, theme: "twitter-bootstrap-3" if @books.any? %>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<tr id="tr_book_id_<%= book.id %>">
+  <td><%= book.id %></td>
+  <td>
+    <%= book.title %>
+  </td>
+  <td><%= book.name %></td>
+  <td><%= book.publish_date %></td>
+  <td><%= book.author %></td>
+  <td><%= book.number_of_pages %></td>
+  <td>
+    <%= link_to edit_admin_book_path(book), class: "btn btn-warning" do %>
+      <i class="glyphicon glyphicon-edit"></i>
+      <%= t ".edit" %>
+    <% end %>
+  </td>
+  <td>
+    <%= button_tag t(:delete),class: "btn btn-danger",
+      onclick: "deleteBook(#{book.id}, '#{t(:confirm_delete,
+      type: t(".book"), name: book.id)}')" %>
+  </td>
+</tr>

@@ -12,7 +12,7 @@ class Book < ApplicationRecord
   validates :introduce, presence: true,
     length: {maximum: Settings.max_lenght_book_introduce}
 
-  default_scope {where deleted: false}
+  default_scope {where deleted: false, bought: true}
 
   mount_uploader :cover, PictureUploader
 

@@ -20,6 +20,9 @@ en:
   update: "Update"
   saved: "Saved"
   destroy_request: "Finish destroy all requests haved processed!"
+  not_fould: "%{object} not found!!!"
+  created: "Create: %{objectClass}: '%{name}'."
+  updated: "Updated: %{objectClass}: '%{name}'."
   rake:
     create_admin:
       input: "Input adimn profile - %{attributes}:\t"
@@ -102,6 +105,36 @@ en:
         follow: "Follow"
       unfollow:
         unfollow: "Unfollow"
+    books:
+      edit:
+        title_h1: "Edit"
+        button_text: "Update"
+      new:
+        title: "Add new book"
+      index:
+        title_page: "Books | Admin"
+        add_new_book: "Add new book"
+        book: "Book"
+        books: "Books"
+        title: "title"
+        edit: "edit"
+        failed: "Failde to delete book %{name}"
+        category: "Category"
+      book:
+        book: "Book"
+    categories:
+      edit:
+        edit: "Edit category"
+        btn_text: "Update"
+      new:
+        new: "New category"
+        btn_text: "Create new category"
+        title: "Category | Admin"
+      index:
+        btn_text: "Add new category"
+        title: "Categories | Admin"
+      category:
+        category: "Category"
   existing_mark_favorite: "Mark favorite books has existing!"
   favorite_not_found: "Favorite not found!"
   mark_book_as_favorite: "%{status} mark book as favorite."

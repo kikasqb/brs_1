@@ -1,0 +1,19 @@
+<tr id="tr_category_id_<%= category.id %>">
+  <td><%= category.id %></td>
+  <td>
+    <p id="td_name_category_id_<%= category.id %>">
+      <%= link_to category.name,admin_books_path(category_id: category.id) %>
+    </p>
+  </td>
+  <td><%= category.created_at %></td>
+  <td>
+    <%= link_to edit_admin_category_path(category),
+      class: "btn btn-warning" do %>
+      <i class='glyphicon glyphicon-edit'></i>
+      <%= t ".edit" %>
+    <% end %>
+    <%= button_tag t(:delete),class: "btn btn-danger",
+      onclick: "deleteCategory(#{category.id}, '#{t(:confirm_delete,
+      type: t(".category"), name: category.id)}')" %>
+  </td>
+</tr>
