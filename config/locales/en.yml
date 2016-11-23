@@ -102,3 +102,8 @@ en:
         follow: "Follow"
       unfollow:
         unfollow: "Unfollow"
+  existing_mark_favorite: "Mark favorite books has existing!"
+  favorite_not_found: "Favorite not found!"
+  mark_book_as_favorite: "%{status} mark book as favorite."
+  deleted: "deleted"
+  success: "success"

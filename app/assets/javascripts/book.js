@@ -41,6 +41,7 @@ function submit_books_search_form(){
   });
 }
 function fadeOutMessage() {
+  $('#flash-messages').show();
   setTimeout(function() {
     $('#flash-messages').fadeOut('slow');
   },3000);
@@ -57,6 +58,60 @@ function markBookAs(bookID, mark){
     error: function(error_message) {
       connect_failed.show();
       markIconElement.className = 'glyphicon glyphicon-ban-circle pull-right';
+    },
+  });
+}
+function favorite(bookID){
+  $.ajax({
+    type: 'POST',
+    url: '/favorites?book_id=' + bookID,
+    success: function(data){
+      if (data.save) {
+        btn = $('#btn-ft-' + bookID);
+        btn.attr('class', 'btn btn-warning');
+        btn.attr('onclick', 'unfavorite(' + data.favorite + ',' + bookID + ')');
+      }
+      html = '';
+      for(var message in data.messages){
+        html += '<div class="alert alert-'+ message + ' alert-auto-hide">'
+        + '<span>' + data.messages[message] + '</span>'
+        + '<a class="close" data-dismiss="alert" href="#">'
+        + '<span class="translation_missing" title="close">X</span></a>'
+        + '</div>';
+      }
+      $('#flash-messages').html(html);
+      $('#flash-messages').show();
+      fadeOutMessage();
+    },
+    error: function(error_message) {
+      connect_failed.show();
+    },
+  });
+}
+function unfavorite(favoriteID, bookID){
+  $.ajax({
+    type: 'DELETE',
+    url: '/favorites/' + favoriteID,
+    success: function(data){
+      if (data.deleted) {
+        btn = $('#btn-ft-' + bookID);
+        btn.attr('class', 'btn btn-info');
+        btn.attr('onclick', 'favorite(' + bookID + ')');
+      }
+      html = '';
+      for(var message in data.messages){
+        html += '<div class="alert alert-'+ message + ' alert-auto-hide">'
+        + '<span>' + data.messages[message] + '</span>'
+        + '<a class="close" data-dismiss="alert" href="#">'
+        + '<span class="translation_missing" title="close">X</span></a>'
+        + '</div>';
+      }
+      $('#flash-messages').html(html);
+      $('#flash-messages').show();
+      fadeOutMessage();
+    },
+    error: function(error_message) {
+      connect_failed.show();
     },
   });
 }
