@@ -2,6 +2,7 @@ class Book < ApplicationRecord
   belongs_to :category
   has_many :reviews
   has_many :requests
+  has_many :marks
 
   validates :title, presence: true,
     length: {maximum: Settings.max_lenght_title}
@@ -19,4 +20,6 @@ class Book < ApplicationRecord
 
   scope :search, ->keyword {where "title LIKE ?", "%#{keyword}%" if keyword.present?}
   scope :of_category, ->category_id {where category_id: category_id if category_id.present?}
+  scope :read, ->{joins(:marks).where "marks.read = ?", true}
+  scope :reading, ->{joins(:marks).where "marks.read = ?", false}
 end

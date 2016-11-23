@@ -50,13 +50,13 @@ function markBookAs(bookID, mark){
   markIconElement.className = "loader pull-right";
   $.ajax({
     type: 'POST',
-    url: '/activities?mark=' + mark + '&book_id=' + bookID,
+    url: '/marks?read=' + mark + '&book_id=' + bookID,
     dataType: 'script',
     success: function(data){
     },
     error: function(error_message) {
+      connect_failed.show();
       markIconElement.className = 'glyphicon glyphicon-ban-circle pull-right';
-      console.log("Asadasdds");
     },
   });
 }

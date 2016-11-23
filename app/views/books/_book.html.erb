@@ -18,18 +18,23 @@
           <% end %>
           <ul class="dropdown-menu" >
             <li>
-              <%= link_to "#" do %>
+              <%= label_tag "", class: "mark-item",
+                onclick: "markBookAs(#{book.id}, true);" do %>
                 <i class="glyphicon glyphicon-tasks"></i>
-                <%= t ".reading" %>
-                <i class="glyphicon glyphicon-ok pull-right"
-                  id="<%= "mar-reading-book-#{book.id}" %>"></i>
+                <%= t :read %>
+                <i class="pull-right glyphicon
+                  <%= "glyphicon-ok" if @read_books.include? book %>"
+                  id="<%= "mark-true-#{book.id}" %>"></i>
               <% end %>
             </li>
             <li>
-              <%= link_to "#" do %>
+              <%= label_tag "", class: "mark-item",
+                onclick: "markBookAs(#{book.id}, false);" do %>
                 <i class="glyphicon glyphicon-bookmark"></i>
-                <%= t ".read" %>
-                <i class="loader pull-right"></i>
+                <%= t :reading %>
+                <i class="pull-right glyphicon
+                  <%= "glyphicon-ok" if @reading_books.include? book %>"
+                  id="<%= "mark-false-#{book.id}" %>"></i>
               <% end %>
             </li>
           </ul>

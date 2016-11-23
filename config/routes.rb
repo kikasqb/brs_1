@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   end
   require "sidekiq/web"
   mount Sidekiq::Web, at: "/sidekiq"
+  resources :marks
 end
