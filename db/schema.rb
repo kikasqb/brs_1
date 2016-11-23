@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114131251) do
+ActiveRecord::Schema.define(version: 20161122041820) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "user_id"
@@ -29,7 +29,8 @@ ActiveRecord::Schema.define(version: 20161114131251) do
     t.string   "author"
     t.integer  "number_of_pages"
     t.string   "introduce"
-    t.boolean  "bought"
+    t.string   "cover"
+    t.boolean  "bought",          default: true
     t.float    "rate",            default: 1.0
     t.boolean  "deleted",         default: false
     t.datetime "created_at",                      null: false
@@ -94,6 +95,17 @@ ActiveRecord::Schema.define(version: 20161114131251) do
     t.datetime "updated_at",  null: false
     t.index ["activity_id"], name: "index_likes_on_activity_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "marks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.boolean  "read",       default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["book_id"], name: "index_marks_on_book_id"
+    t.index ["user_id", "book_id"], name: "index_marks_on_user_id_and_book_id", unique: true
+    t.index ["user_id"], name: "index_marks_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|

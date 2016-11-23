@@ -33,6 +33,10 @@ en:
   search: "Search"
   confirm_delete: "Are you sure to delete : %{type} : %{name}?"
   delete: "Delete"
+  reading: "Reading"
+  read: "Read"
+  mark_book_success: "success to mark book"
+  mark_book_failed: "failed to mark book"
   sexs:
     male: "Male"
     female: "Female"

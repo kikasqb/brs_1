@@ -1,0 +1,5 @@
+$('#flash-messages').show();
+$('#flash-messages').html('<%= j render "layouts/flash", messages: @messages %>');
+fadeOutMessage();
+$('#<%= "mark-#{@mark_type}-#{@mark.book_id}" %>').attr('class', 'glyphicon glyphicon-ok pull-right');
+$('#<%= "mark-#{!@mark_type}-#{@mark.book_id}" %>').attr('class', 'glyphicon pull-right');
