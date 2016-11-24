@@ -1,0 +1,51 @@
+class Admin::CategoriesController < ApplicationController
+  layout "layouts/admin_layout"
+  load_and_authorize_resource :category, find_by_id: :id
+  before_action :load_category, only: [:edit, :update, :destroy]
+
+  def index
+    @categories = Category.search(params[:key]).page params[:page]
+    @category = Category.new
+  end
+
+  def create
+    @category = Category.new category_params
+    if @category.save
+      flash[:info] = t :created, objectClass: :category, name: @category.name
+      redirect_to admin_categories_path
+    else
+      render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @category.update_attributes category_params
+      flash[:success] = t :updated, objectClass: :category, name: @category.name
+      redirect_to admin_categories_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    unless @category.destroy
+      flash[:warning] = t :failed, name: @category.name
+      redirect_to admin_categories_path
+    end
+  end
+
+  private
+  def category_params
+    params.require(:category).permit :name
+  end
+
+  def find_category?
+    unless @category
+      flash[:danger] = t :not_fould, object: Category.name
+      redirect_to admin_categories_path
+    end
+  end
+end

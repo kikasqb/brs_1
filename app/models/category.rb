@@ -5,4 +5,5 @@ class Category < ApplicationRecord
     length: {maximum: Settings.max_lenght_name_of_book}
 
   default_scope {where deleted: false}
+  scope :search, ->keyword {where "name LIKE ?", "%#{keyword}%"}
 end
