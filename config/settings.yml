@@ -15,6 +15,11 @@ max_lenght_name_of_book: 255
 max_lenght_content_comment: 1000
 max_lenght_request_description: 1000
 max_length_password: 100
-max_of_rating_points: 5
+max_length_review_title: 255
+max_length_review_content: 1000
+max_rate: 5
 length_sub_introduce: 255
 length_sub_title: 30
+
+book:
+  per_page_review: 12

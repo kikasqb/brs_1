@@ -20,14 +20,12 @@
           <%= t ".number_of_pages" %>
           <b> <%= @book.number_of_pages %></b>
         </p>
-        <% if user_signed_in? %>
-          <p id="votes">
-            <i class="glyphicon glyphicon-user"></i>
-            <%= t ".votes", votes: @book.reviews.size %>
-          </p>
-        <% end %>
+        <p id="votes">
+          <i class="glyphicon glyphicon-user"></i>
+          <%= t ".votes", votes: @book.reviews.size %>
+        </p>
       </div>
-      <div class="book-introduce panel panel-info col-md-6 col-xs-12">
+      <div class="col-xs-0 col-md-6 book-introduce panel panel-info">
         <h5 class="panel panel-header"><%= t ".introduce" %></h5>
         <p>
           <%= show_book_introduce @book %>
@@ -39,29 +37,52 @@
         <span class="stars"><%= @book.rate %></span>
       </div>
       <div class="col-md-6 col-xs-12">
-        <% if @favorite %>
-          <%= label_tag "", id: "btn-ft-#{@book.id}",
-            class: "btn btn-warning",
-            onclick: "unfavorite(#{@favorite.id}, #{@book.id});" do %>
-            <i class="glyphicon glyphicon-bookmark"></i>
-            <%= t ".favorite" %>
+        <% if user_signed_in? %>
+          <% if @favorite %>
+            <%= label_tag "", id: "btn-ft-#{@book.id}",
+              class: "btn btn-warning", onclick: "unfavorite(#{@favorite.id});" do %>
+              <i class="glyphicon glyphicon-bookmark"></i>
+              <%= t ".favorite" %>
+            <% end %>
+          <% else %>
+            <%= label_tag "", id: "btn-ft-#{@book.id}",
+              class: "btn btn-info", onclick: "favorite(#{@book.id});" do %>
+              <i class="glyphicon glyphicon-bookmark"></i>
+              <%= t ".favorite" %>
+            <% end %>
           <% end %>
-        <% else %>
-          <%= label_tag "", id: "btn-ft-#{@book.id}",
-            class: "btn btn-info", onclick: "favorite(#{@book.id});" do %>
-            <i class="glyphicon glyphicon-bookmark"></i>
-            <%= t ".favorite" %>
+          <%= link_to "#", data: {toggle: "modal", target: "#review-modal"},
+            class: "btn btn-success" do %>
+            <i class="glyphicon glyphicon-edit" ></i>
+            <%= t ".review" %>
           <% end %>
         <% end %>
-        <div class="rating">
-          <% Settings.max_of_rating_points.times do |i| %>
-            <span id="<%= "star-#{i}" %>"
-              onclick="<%= "rate(#{i}, #{Settings.max_of_rating_points});" %>">
-              &#9734;
-            </span>
-          <% end %>
-        </div>
       </div>
     </div>
   </div>
 </div>
+<% if user_signed_in? %>
+  <div class="modal fade" id="review-modal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            &times;
+          </button>
+          <h3 class="modal-title glyphicon glyphicon-user">
+            <%= t ".reviews" %>
+          </h3>
+        </div>
+        <div class="modal-body">
+          <%= render "reviews/form" %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"
+            data-dismiss="modal">
+            <%= t ".close" %>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

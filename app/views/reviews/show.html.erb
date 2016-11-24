@@ -1,0 +1,78 @@
+<% provide :title, @review.title %>
+<div class="row">
+  <div class="container book-background">
+    <%= render "books/book_info" %>
+  </div>
+</div>
+<div class="row">
+  <div class="panel panel-info col-md-12 col-xs-12">
+    <div class="panel-heading text-center">
+      <h1>
+        <%= @review.title %>
+      </h1>
+      <h4>
+        <%= @review.user.name %>
+      </h4>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <%= @review.content.html_safe %>
+      </div>
+      <h5>
+        <%= t :author %>
+      </h5>
+      <div class="media">
+        <div class="pull-left" href="#">
+            <%= show_avatar @review.user, Settings.avatar_min_size %>
+        </div>
+        <div class="media-body">
+            <h4 class="author-info">
+              <%= link_to @review.user.name, "#" %>
+              <small>
+                <%= t :rate %>
+              </small>
+              <span class="review-rate">
+                <%= @review.rate %>
+              </span>
+              <small>
+                <%= t :time_ago, time: time_ago_in_words(@review.created_at) %>
+              </small>
+              <span class="totals-comment pull-right">
+                <i class="glyphicon glyphicon-comment"></i>
+                <%= t ".comment", size: @review.comments.size %>
+              </span>
+            </h4>
+            <% if can? :update, @review %>
+              <%= link_to t(:edit), edit_review_path(@review),
+                class: "btn btn-warning" %>
+              <%= link_to t(:delete), review_path(@review), method: :delete,
+                class: "btn btn-danger" %>
+            <% end %>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="row">
+    <div class="col-md-2 col-xs-12">
+      <h2><%= t ".comments" %></h2>
+    </div>
+    <div class="book-introduce pull-right col-md-10 col-xs-12">
+      <% if @comments && @comments.any? %>
+        <div class="row">
+          <%= render @comments %>
+        </div>
+        <div class="row pull-right">
+          <%= paginate @comments, theme: "twitter-bootstrap-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-xs-12 pull-right">
+      <%= render "commentators/form" %>
+    </div>
+  </div>
+</div>
+

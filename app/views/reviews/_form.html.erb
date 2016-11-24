@@ -1,0 +1,27 @@
+<%= form_for @review do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <%= f.hidden_field :book_id %>
+  <%= f.hidden_field :rate, id: "rate-book-#{f.object.book_id}",
+    value: Settings.default_rate %>
+  <div class="rating">
+    <% Settings.max_rate.times do |i| %>
+      <span id="<%= "star-#{i}" %>"
+        onclick="<%= "rate(#{i}, #{Settings.max_rate}, #{f.object.book_id});" %>">
+        <% if i < Settings.max_rate - (f.object.rate || Settings.default_rate) %>
+          &#9734;
+        <% else %>
+          &#9733;
+        <% end %>
+      </span>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_area :content, class: "form-control ckeditor" %>
+  </div>
+  <%= f.submit t(".save"), class: "btn btn-primary form-control" %>
+<% end %>

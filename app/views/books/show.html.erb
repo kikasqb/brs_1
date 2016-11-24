@@ -15,11 +15,17 @@
   </div>
 </div>
 <div class="row">
-  <div class="book-introduce pull-right panel panel-info col-md-10 col-xs-12">
-    <% if @book.reviews.any? %>
-      <ol class="comments">
-        <%= render @book.reviews %>
-      </ol>
+  <div class="col-md-2 col-xs-12">
+    <h2><%= t ".reviews" %></h2>
+  </div>
+  <div class="book-introduce pull-right col-md-10 col-xs-12">
+    <% if @reviews && @reviews.any? %>
+      <div class="row">
+        <%= render @reviews %>
+      </div>
+      <div class="row pull-right">
+        <%= paginate @reviews, theme: "twitter-bootstrap-3" %>
+      </div>
     <% end %>
   </div>
 </div>

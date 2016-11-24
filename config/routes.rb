@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   mount Sidekiq::Web, at: "/sidekiq"
   resources :marks
   resources :favorites, only: [:index, :create, :destroy]
+  resources :reviews, except: [:new, :index]
+  resources :commentators
 end

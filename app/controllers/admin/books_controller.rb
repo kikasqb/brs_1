@@ -1,7 +1,7 @@
 class Admin::BooksController < ApplicationController
   layout "layouts/admin_layout"
-  load_and_authorize_resource :book, find_by_id: :id
-  before_action :find_book?, only: [:edit, :update, :destroy]
+  authorize_resource :book
+  before_action :load_book, only: [:edit, :update, :destroy]
   before_action :load_category, except: [:update, :destroy]
   before_action :new_book, only: [:index, :new]
 
@@ -48,9 +48,10 @@ class Admin::BooksController < ApplicationController
       :number_of_pages, :cover
   end
 
-  def find_book?
+  def load_book
+    @book = Book.find_by id: params[:id]
     unless @book
-      flash[:danger] = t :not_fould, object: Book.name
+      flash[:danger] = t :not_fould, objectClass: Book.name
       redirect_to admin_books_path
     end
   end
