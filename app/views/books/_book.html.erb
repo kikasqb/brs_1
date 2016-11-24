@@ -12,19 +12,19 @@
             <%= t ".mark" %>
             <span class="caret" ></span>
           <% end %>
-          <%= link_to "#", class: "btn btn-warning" do %>
-            <i class="glyphicon glyphicon-bookmark"> </i>
-            <%= t ".favorite" %>
-          <% end %>
           <ul class="dropdown-menu" >
             <li>
               <%= label_tag "", class: "mark-item",
                 onclick: "markBookAs(#{book.id}, true);" do %>
                 <i class="glyphicon glyphicon-tasks"></i>
                 <%= t :read %>
-                <i class="pull-right glyphicon
-                  <%= "glyphicon-ok" if @read_books.include? book %>"
-                  id="<%= "mark-true-#{book.id}" %>"></i>
+                <% if @read_books && @read_books.include?(book) %>
+                  <i class="pull-right glyphicon glyphicon-ok"
+                    id="<%= "mark-true-#{book.id}" %>"></i>
+                <% else %>
+                  <i class="pull-right" id="<%= "mark-true-#{book.id}" %>">
+                  </i>
+                <% end %>
               <% end %>
             </li>
             <li>
@@ -32,9 +32,13 @@
                 onclick: "markBookAs(#{book.id}, false);" do %>
                 <i class="glyphicon glyphicon-bookmark"></i>
                 <%= t :reading %>
-                <i class="pull-right glyphicon
-                  <%= "glyphicon-ok" if @reading_books.include? book %>"
-                  id="<%= "mark-false-#{book.id}" %>"></i>
+                <% if @reading_books && @reading_books.include?(book) %>
+                  <i class="pull-right glyphicon glyphicon-ok"
+                    id="<%= "mark-false-#{book.id}" %>"></i>
+                <% else %>
+                  <i class="pull-right" id="<%= "mark-false-#{book.id}" %>">
+                  </i>
+                <% end %>
               <% end %>
             </li>
           </ul>

@@ -39,7 +39,20 @@
         <span class="stars"><%= @book.rate %></span>
       </div>
       <div class="col-md-6 col-xs-12">
-        <span><%= t ".user_rate", votes: 0 %></span>
+        <% if @favorite %>
+          <%= label_tag "", id: "btn-ft-#{@book.id}",
+            class: "btn btn-warning",
+            onclick: "unfavorite(#{@favorite.id}, #{@book.id});" do %>
+            <i class="glyphicon glyphicon-bookmark"></i>
+            <%= t ".favorite" %>
+          <% end %>
+        <% else %>
+          <%= label_tag "", id: "btn-ft-#{@book.id}",
+            class: "btn btn-info", onclick: "favorite(#{@book.id});" do %>
+            <i class="glyphicon glyphicon-bookmark"></i>
+            <%= t ".favorite" %>
+          <% end %>
+        <% end %>
         <div class="rating">
           <% Settings.max_of_rating_points.times do |i| %>
             <span id="<%= "star-#{i}" %>"
