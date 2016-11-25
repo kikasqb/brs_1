@@ -1,10 +1,11 @@
-function rate(star,max){
+function rate(star, max, bookID){
   for (var i = max - 1; i >= star; i--) {
     $('#star-' + i).html('&#9733;');
   }
   for (var i = 0; i < star; i++) {
     $('#star-' + i).html('&#9734;');
   }
+  $('#rate-book-' + bookID).val(max - star);
 }
 $.fn.stars = function() {
   return $(this).each(function() {
@@ -20,11 +21,25 @@ blackStar = '<span class="review-rate">&#9733;</span>';
 $.fn.rate = function() {
   return $(this).each(function() {
     var val = parseInt($(this).html());
-    html = '';
-    for (var i = 0; i < val; i++) {
-      html += blackStar;
+    if (val > 0) {
+      html = '';
+      for (var i = 0; i < val; i++) {
+        html += blackStar;
+      }
+      $(this).html(html);
     }
-    $(this).html(html);
+  });
+}
+$.fn.rating = function() {
+  return $(this).each(function() {
+    var val = parseInt($(this).html());
+    if (val > 0) {
+      html = '';
+      for (var i = 0; i < val; i++) {
+        html += blackStar;
+      }
+      $(this).html(html);
+    }
   });
 }
 function submit_books_search_form(){
@@ -37,7 +52,7 @@ function submit_books_search_form(){
     },
     error: function(error_message) {
       connect_failed.show();
-    },
+    }
   });
 }
 function fadeOutMessage() {
@@ -58,7 +73,7 @@ function markBookAs(bookID, mark){
     error: function(error_message) {
       connect_failed.show();
       markIconElement.className = 'glyphicon glyphicon-ban-circle pull-right';
-    },
+    }
   });
 }
 function favorite(bookID){
@@ -85,7 +100,7 @@ function favorite(bookID){
     },
     error: function(error_message) {
       connect_failed.show();
-    },
+    }
   });
 }
 function unfavorite(favoriteID, bookID){
@@ -112,8 +127,9 @@ function unfavorite(favoriteID, bookID){
     },
     error: function(error_message) {
       connect_failed.show();
-    },
+    }
   });
+}
 function deleteBook(id,strConfirm){
   if (confirm(strConfirm)) {
     $.ajax({
@@ -124,7 +140,7 @@ function deleteBook(id,strConfirm){
       },
       error: function(error_message) {
         $("#connect_failed").show();
-      },
+      }
     });
   }
 }
@@ -138,7 +154,7 @@ function deleteCategory(id,strConfirm){
       },
       error: function(error_message) {
         $("#connect_failed").show();
-      },
+      }
     });
   }
 }
@@ -171,6 +187,6 @@ function init_config_book() {
 $(document).ready(function() {
   init_config_book();
 });
-$( document ).on('turbolinks:load', function() {
+$(document).on('turbolinks:load', function() {
   init_config_book();
-})
+});

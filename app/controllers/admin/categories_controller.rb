@@ -1,8 +1,7 @@
 class Admin::CategoriesController < ApplicationController
   layout "layouts/admin_layout"
-  load_and_authorize_resource :category, find_by_id: :id
+  authorize_resource :category
   before_action :load_category, only: [:edit, :update, :destroy]
-
   def index
     @categories = Category.search(params[:key]).page params[:page]
     @category = Category.new
@@ -42,9 +41,9 @@ class Admin::CategoriesController < ApplicationController
     params.require(:category).permit :name
   end
 
-  def find_category?
+  def load_category
     unless @category
-      flash[:danger] = t :not_fould, object: Category.name
+      flash[:danger] = t :not_fould, objectClass: Category.name
       redirect_to admin_categories_path
     end
   end

@@ -4,7 +4,7 @@
       <div class="form-group">
         <%= label_tag :Category %>
         <%= select_tag :category_id,
-          options_from_collection_for_select(@all_categories,
+          options_from_collection_for_select(@categories,
           "id", "name", params[:category_id]), include_blank: t("all"),
           class: "form-control", onchange: "submit_books_search_form();",
           id: "select_category_id" %>

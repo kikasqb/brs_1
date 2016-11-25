@@ -1,13 +1,13 @@
 class FavoritesController < ApplicationController
   load_and_authorize_resource
-  before_action :create_messages
 
   def create
     messages = Hash.new
-    if Favorite.find_by book_id: params[:book_id], user_id: current_user.id
+    favorite = Favorite.find_or_initialize_by book_id: params[:book_id],
+      user_id: current_user.id
+    if favorite.id
       messages[:info] = t :existing_mark_favorite
     else
-      @favorite = Favorite.new book_id: params[:book_id], user_id: current_user.id
       if save = favorite.save
         messages[:warning] = t :mark_book_as_favorite, status: t(:success)
       else
