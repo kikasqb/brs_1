@@ -171,3 +171,45 @@ en:
   mark_book_as_favorite: "%{status} mark book as favorite."
   deleted: "deleted"
   success: "success"
+  users:
+    show:
+      title: "User | %{name}"
+      activities: "Activities"
+      read_books: "Read books"
+      reading_books: "Read books"
+      favorites: "Favorites"
+      requests: "Requests"
+    edit:
+      title: "Edit profile"
+      btn_text: "Update my profile"
+      update: "Update your profile"
+      failed: "Failde to delete user %{name}"
+    new:
+      title: "Sign up"
+      button_text: "Create my account"
+    index:
+      title: "All Users"
+      all: "All users"
+    user:
+      follow: "Follow"
+    user_info:
+      birthday: "Birthday : %{birthday}"
+      address: "Address : %{address}"
+      following: "following"
+      followers: "followers"
+    users:
+      deleted: "User : %{name} be deleted"
+      failed: "Failde to delete user %{name}"
+      placeholder: "Enter here"
+    follow:
+      follow: "Follow"
+    unfollow:
+      unfollow: "Unfollow"
+  followers:
+    index:
+      header_title: "Followers"
+      title: "%{name} | Followers"
+  following:
+    index:
+      title: "%{name} | Following"
+      header_title: "Following"

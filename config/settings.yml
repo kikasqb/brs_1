@@ -23,3 +23,5 @@ length_sub_title: 30
 
 book:
   per_page_review: 12
+user:
+  user_per_page: 12

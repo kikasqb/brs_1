@@ -1,0 +1,32 @@
+<% provide :title, t(".title", name: @user.name) %>
+<div class="row">
+  <%= render "users/user_info" %>
+  <div class="col-md-7 col-xs-12">
+    <div class="col-md-12 panel panel-success">
+      <ul class="nav nav-tabs">
+        <li id="user-activities">
+          <%= link_to t(".activities"), user_path(@user, view: :activities) %>
+        </li>
+        <li id="user-read_books" class="active">
+          <%= link_to t(".read_books"), user_path(@user, view: :read_books) %>
+        </li>
+        <li id="user-reading_books">
+          <%= link_to t(".reading_books"), user_path(@user, view: :reading_books) %>
+        </li>
+        <li id="user-favorites">
+          <%= link_to t(".favorites"), user_path(@user, view: :favorites) %>
+        </li>
+        <% if user_signed_in? && current_user == @user %>
+          <li id="user-requests">
+            <%= link_to t(".requests"), user_path(@user, view: :requests) %>
+          </li>
+        <% end %>
+      </ul>
+      <div class="panel-heading">
+        <h1 class="panel-title title_header"></h1>
+      </div>
+      <div class="panel-body" id="panel-activities">
+      </div>
+    </div>
+  </div>
+</div>
