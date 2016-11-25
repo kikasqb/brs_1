@@ -1,0 +1,12 @@
+<div class="col-md-3 col-xs-6" id="user_content_id_<%= user.id %>">
+  <div class="row text-center">
+    <%= show_avatar @user, Settings.avatar_size %>
+  </div>
+  <div class="row text-center">
+    <div class="row">
+      <p><%= link_to user.name, user, class: "form-label" %></p>
+      <p><%= user.birthday %></p>
+      <p><%= user.sex %></p>
+    </div>
+  </div>
+</div>
