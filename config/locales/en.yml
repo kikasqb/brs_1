@@ -28,6 +28,12 @@ en:
   lost_request_book: "Your request book was lost"
   delete_failed: "Failed to delete %{name}"
   delete_success: "%{name} deleted."
+  approve: "Approve"
+  unapprove: "Unapprove"
+  bought: "Set book has bought"
+  not_bought: "Set book not has bought"
+  failed: "Something was wrong. Try again later!"
+  failed_update_rate: "Failed to update book rate."
   rake:
     create_admin:
       input: "Input adimn profile - %{attributes}:\t"
@@ -106,10 +112,16 @@ en:
         deleted: "User : %{name} be deleted"
         failed: "Failde to delete user %{name}"
         placeholder: "Enter here"
-      follow:
-        follow: "Follow"
-      unfollow:
-        unfollow: "Unfollow"
+    requests:
+      index:
+        title: "Request | Manage"
+        user_name: "User name"
+        book_title: "Book name"
+      btn_bought:
+        bought: "Bought"
+        not_bought: "Not bought"
+      request:
+        request: "Request"
     books:
       edit:
         title_h1: "Edit"

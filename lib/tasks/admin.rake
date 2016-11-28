@@ -1,7 +1,7 @@
 namespace :admin do
   desc I18n.t :create_admin
   task create_admin: :environment do
-    admin = User.new
+    admin = User.new admin: true
     print I18n.t "rake.create_admin.input",
       attributes: I18n.t("rake.create_admin.name")
     admin.name = STDIN.gets.chomp

@@ -13,4 +13,19 @@ class Review < ApplicationRecord
   validates :content, presence: true, length: {maximum: Settings.max_length_review_content}
 
   default_scope {where deleted: false}
+
+  after_save :update_rate_of_book
+
+  def update_rate_of_book
+    book.rate = get_new_rate
+    unless book.save
+      errors.add :book, I18n.t(:failed_update_rate)
+      raise ActiveRecord::RecordInvalid.new(self)
+    end
+  end
+
+  def get_new_rate
+    reviews = Review.where book_id: book_id
+    new_rate = reviews.sum(:rate) / reviews.count
+  end
 end

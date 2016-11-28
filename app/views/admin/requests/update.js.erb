@@ -1,0 +1,9 @@
+$('#flash-messages').show();
+$('#flash-messages').html('<%= j render "layouts/flash", messages: @messages %>');
+fadeOutMessage();
+$('#btn-approve-<%= @request.id %>').html(
+  '<%= j render "btn_approve", request: @request %>'
+);
+$('#btn-bought-<%= @request.id %>').html(
+  '<%= j render "btn_bought", request: @request %>'
+);

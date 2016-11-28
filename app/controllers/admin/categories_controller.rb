@@ -2,8 +2,13 @@ class Admin::CategoriesController < ApplicationController
   layout "layouts/admin_layout"
   authorize_resource :category
   before_action :load_category, only: [:edit, :update, :destroy]
+
   def index
     @categories = Category.search(params[:key]).page params[:page]
+    @category = Category.new
+  end
+
+  def new
     @category = Category.new
   end
 

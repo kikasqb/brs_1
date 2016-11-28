@@ -1,0 +1,33 @@
+<tr id="tr_request_id_<%= request.id %>">
+  <td><%= request.id %></td>
+  <td>
+    <p>
+      <%= link_to request.name, user_path(request.user) %>
+    </p>
+  </td>
+  <td>
+    <p>
+      <%= link_to request.title, books_path(request.book) %>
+    </p>
+  </td>
+  <td>
+    <p>
+      <%= request.book.author %>
+    </p>
+  </td>
+  <td>
+    <i id="btn-approve-<%= request.id %>">
+      <%= render "btn_approve", request: request %>
+    </i>
+  </td>
+  <td>
+    <i id="btn-bought-<%= request.id %>">
+      <%= render "btn_bought", request: request %>
+    </i>
+  </td>
+  <td>
+    <%= button_tag t(:delete),class: "btn btn-danger",
+      onclick: "deleteRequest(#{request.id}, '#{t(:confirm_delete,
+      type: t(".request"), name: request.id)}')" %>
+  </td>
+</tr>

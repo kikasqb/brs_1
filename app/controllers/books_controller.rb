@@ -10,7 +10,11 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find_by id: params[:id]
+    @book = if current_user && current_user.admin
+        Book
+      else
+        Book.unscoped
+      end.find_by id: params[:id]
     if @book
       @review = Review.new book_id: @book.id
       @reviews = @book.reviews.page(params[:page])

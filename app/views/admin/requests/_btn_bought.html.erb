@@ -1,0 +1,3 @@
+<%= button_tag request.book.bought ? t(".bought") : t(".not_bought"),
+  class: "btn #{"btn-info" unless request.book.bought}",
+  onclick: "bought(#{request.id},#{!request.book.bought})" %>
