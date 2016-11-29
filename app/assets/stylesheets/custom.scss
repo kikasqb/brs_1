@@ -31,6 +31,7 @@
   background: url(/assets/background.jpg) repeat-x;
   padding-top: 15px;
   border-radius: 5px;
+  display: block;
 }
 #book-cover, .book-cover {
   border-radius: 5px;
@@ -278,4 +279,25 @@ span.stars span {
     border: 1px solid #ddd;
     border-bottom-color: transparent;
     cursor: default;
+}
+.slider-element{
+  display: none;
+  position: relative;
+}
+.user-links{
+  vertical-align: middle;
+}
+.right-header-item{
+  font-size: 100%;
+  font-weight: 600;
+  vertical-align: middle;
+}
+#search_form{
+  height: 80px;
+  position: relative;
+  display: block;
+  margin-left: 15px;
+  padding-top: 30px;
+  padding-bottom: 15px;
+  vertical-align: middle;
 }

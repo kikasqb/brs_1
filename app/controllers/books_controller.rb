@@ -1,7 +1,8 @@
 class BooksController < ApplicationController
 
   def index
-    @books = Book.search(params[:key]).of_category(params[:category_id]).page params[:page]
+    @books = Book.search(params[:key]).of_category(params[:category_id])
+      .page(params[:page]).per Settings.book.per_page_book
     @categories = Category.all
     if user_signed_in?
       @reading_books = current_user.books.reading

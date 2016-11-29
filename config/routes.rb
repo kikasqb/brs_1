@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+  get 'search/index'
+
   root "static_pages#home"
+  get  "/admin",  to: "admin/books#index"
   mount Ckeditor::Engine => "/ckeditor"
   devise_for :users, controllers: {registrations: "registrations"}
   resources :books, only: [:index, :show]
@@ -22,4 +25,5 @@ Rails.application.routes.draw do
   resources :requests, except: [:index]
   resources :comments, except: [:new, :show, :index]
   resources :likes, only: [:create, :destroy]
+  resources :search, only: :index
 end

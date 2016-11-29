@@ -104,6 +104,12 @@ en:
       review: "Review: %{title} - %{user}"
       new: "Have new %{type} make by %{user}"
   layouts:
+    header:
+      admin: "Admin"
+      books: "Books"
+      request: "Request"
+      search_placeholder: "Enter here to search..."
+      search: "Search all"
     left_bar:
       books: "Books"
       categories: "Categories"
@@ -258,3 +264,9 @@ en:
     index:
       title: "%{name} | Following"
       header_title: "Following"
+  result:
+    title: "Result"
+    users: "Requests of users"
+    books: "Requests of books"
+    search: "Search for: ' %{key} ' "
+    nil_result: "Notthing binding to ' %{key} '"

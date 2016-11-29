@@ -19,7 +19,7 @@ class Request < ApplicationRecord
     joins_book.where("books.title LIKE ?", "%#{keyword}%")
   end
   scope :joins_book, ->do
-    joins("LEFT JOIN books ON book_id = users.id")
+    joins("LEFT JOIN books ON book_id = books.id")
   end
 
   delegate :title, to: :book, allow_nil: true

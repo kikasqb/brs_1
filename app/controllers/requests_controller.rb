@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  authorize_resource :request
+  authorize_resource
   before_action :load_request, except: [:index, :new, :create]
   before_action :processed?, only: [:edit, :update]
   before_action :load_category, except: [:update, :destroy]
