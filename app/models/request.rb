@@ -19,13 +19,20 @@ class Request < ApplicationRecord
     joins_book.where("books.title LIKE ?", "%#{keyword}%")
   end
   scope :joins_book, ->do
-    joins("LEFT JOIN books ON book_id = books.id")
+    joins("LEFT JOIN books ON book_id = users.id")
   end
 
   delegate :title, to: :book, allow_nil: true
   delegate :name, to: :user, allow_nil: true
 
+  before_destroy :send_mail_approved_request
+
   def book
     Book.unscoped{super}
+  end
+
+  private
+  def send_mail_approved_request
+    MailerWorker.perform_at MailerWorker::MAIL_APPROVED_REQUEST, id, Request.name
   end
 end

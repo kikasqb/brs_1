@@ -1,4 +1,5 @@
 <%= t :hello, name: @request.user.name %>
-<%= t(".content", request: t(".request"), title: @request.book.title) %>
+<%= t(".content", request: t(".request"), title: @request.book.title,
+  status: @request.book.bought ? t(:approve) : t(:unapprove)) %>
 <%= books_url @request.book %>
 <%= requests_url @request %>

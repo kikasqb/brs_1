@@ -7,8 +7,9 @@ class UserMailer < ApplicationMailer
   def notification notifica, user
     @notifica = notifica
     @user = user
+    title = notifica.is_a?(Review) ? notifica.book.title : notifica.review.title
     mail to: @user.email, subject: I18n.t(:notification,
-      user: notifica.user, new_object: notifica.class.name,
-      notifica: notifica.is_a?(Review) ? notifica.book.title : notifica.review.title)
+      user: notifica.user.name, new_object: notifica.class.name,
+      title: title)
   end
 end

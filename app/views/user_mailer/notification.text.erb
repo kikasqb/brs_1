@@ -1,9 +1,11 @@
-<%= t :hello, name: @notifica.name %>
+<%= t :hello, name: @user.name %>
 <% if @notifica.is_a? Review %>
   <%= t ".book", title: @notifica.book.title %>
+  <%= t ".new", type: @notifica.class.name, user: @notifica.user.name %>
+  <%= reviews_url @notifica %>
 <% else %>
   <%= t ".review", title: @notifica.review.title,
     user: @notifica.review.user.name %>
+  <%= reviews_url @notifica.review %>
 <% end %>
-<%= t(".new", type:@notifica.class.name, user: @notifica.name).html_safe %>
-<%= reviews_url(@notifica.review) %>
+<%= t(".new", type:@notifica.class.name, user: @notifica.user.name).html_safe %>

@@ -43,7 +43,7 @@ class RequestsController < ApplicationController
     else
       flash[:danger] = t :delete_failed, name: :request
     end
-    redirect_to root_url
+    redirect_to admin_requests_path
   end
 
   private

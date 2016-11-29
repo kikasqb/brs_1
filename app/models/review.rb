@@ -13,9 +13,12 @@ class Review < ApplicationRecord
   validates :content, presence: true, length: {maximum: Settings.max_length_review_content}
 
   default_scope {where deleted: false}
+  scope :of_book, ->book_id {where book_id: book_id if book_id.present?}
 
   after_save :update_rate_of_book
+  after_create :mail_notifica_other_reviewer
 
+  private
   def update_rate_of_book
     book.rate = get_new_rate
     unless book.save
@@ -27,5 +30,9 @@ class Review < ApplicationRecord
   def get_new_rate
     reviews = Review.where book_id: book_id
     new_rate = reviews.sum(:rate) / reviews.count
+  end
+
+  def mail_notifica_other_reviewer
+    MailerWorker.perform_async MailerWorker::MAIL_NOTIFICATION, id, Review.name
   end
 end

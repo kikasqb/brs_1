@@ -36,6 +36,9 @@ class User < ApplicationRecord
   mount_uploader :avatar, PictureUploader
 
   scope :search, ->keyword {where "name LIKE ?", "%#{keyword}%"}
+  scope :reviewers_of_book, ->book_id do
+    joins(:reviews).where("reviews.book_id = ?", book_id).group("users.id")
+  end
 
   def follow other_user
     active_relationships.create followed_id: other_user.id
