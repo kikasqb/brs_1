@@ -1,5 +1,5 @@
 <div class="row">
-  <nav class="navbar navbar-default navbar-fixed-top navbar-custom" >
+  <nav class="navbar navbar-default navbar-fixed-top navbar-custom" style="background: #f0eeeb;">
     <div class="container" >
       <div class="navbar-header" >
         <button type="button" class="navbar-toggle collapsed"
@@ -14,22 +14,56 @@
       <div id="navbar" class="navbar-collapse collapse" >
         <ul class="nav navbar-nav navbar-left" >
           <li>
-            <%= link_to root_url, class: "header-item"  do %>
-              <%= image_tag Settings.default_icon, size: Settings.icon_size %>
+            <div class="container_logo">
+                <%= link_to root_url, class: "header-item"  do %>
+                  <%= image_tag Settings.default_icon, id: 'root_logo', size: Settings.icon_size %>
+                <% end %>
+            </div>            
+          </li>
+          <li class="header-nav-item right-header-item" >
+            <%= link_to books_path, id: 'root_name', class: "hear-item" do %>
+              <%= image_tag 'coollogo_com-31528442.png', width: 230%>
+            <% end %>
+          </li>
+          <% if user_signed_in? %>
+            <li class="header-nav-item right-header-item" >
+              <%= link_to new_request_path, class: "hear-item" do %>
+                <i class="glyphicon glyphicon-send" ></i>
+                <%= t ".request" %>
+              <% end %>
+            </li>
+          <% end %>
+          <li class="header-nav-item right-header-item" >
+            <%= form_tag search_index_path, method: :get, id: "search_form" do %>
+                <div class="form-group form-inline">
+                  <div class="input-group">
+                    <%= text_field_tag :key, params[:key],
+                      class: "form-control", id:"search_books" %>
+                    <div class="input-group-btn">
+                      <%= submit_tag t(".search"), class: "btn btn-info" %>
+                    </div>
+                  </div>
+                </div>
             <% end %>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right" >
           <% if user_signed_in? %>
+            <li>
+              <%= link_to image_tag(current_user.avatar,class: "user-links",
+                size: Settings.avatar_header_size), current_user %>
+            </li>
             <li class="dropdown" >
               <%= link_to "#", class: "dropdown-toggle hear-item",
                 data: {toggle: "dropdown", role: "button"},
                 aria: {haspopup: "true", expanded: "false"} do %>
-                <i class="glyphicon glyphicon-user" ></i>
                 <%= current_user.name %>
                 <span class="caret" ></span>
               <% end %>
               <ul class="dropdown-menu" >
+                <li>
+                  <%= link_to t(".admin"),admin_path if current_user.admin? %>
+                </li>
                 <li>
                   <%= link_to edit_user_registration_path(current_user) do %>
                     <%= t :edit %>

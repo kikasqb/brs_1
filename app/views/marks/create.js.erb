@@ -3,3 +3,8 @@ $('#flash-messages').html('<%= j render "layouts/flash", messages: @messages %>'
 fadeOutMessage();
 $('#<%= "mark-#{@mark_type}-#{@mark.book_id}" %>').attr('class', 'glyphicon glyphicon-ok pull-right');
 $('#<%= "mark-#{!@mark_type}-#{@mark.book_id}" %>').attr('class', 'glyphicon pull-right');
+<% if @mark_type %>
+  $('#current_mark_of_book_<%= @mark.book_id %>').html('<%= t :read %>');
+<% else %>
+  $('#current_mark_of_book_<%= @mark.book_id %>').html('<%= t :reading %>');
+<% end %>

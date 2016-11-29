@@ -1,24 +1,84 @@
 <% provide :title, t(:home) %>
-<div class="center jumbotron row">
-  <h2><%= t :wellcome_to %></h2>
-  <%= link_to t(:sign_up_now), "#",
-    class: "btn btn-lg btn-primary" %>
-</div>
-
 <div class="row">
   <section id="slider">
-    <div class="container">
-      <div class="col-md-3 col-xs-0 text-center book-cover">
-        <%= image_tag "", size: Settings.size_of_book_cover %>
+    <div id="slider-show">
+    </div>
+    <% @slider_books.each_with_index do |book, index| %>
+      <div id="slide-element-<%= index %>" class="slider-element">
+        <div class="col-md-3 col-xs-0 text-center book-cover">
+          <%= show_cover book %>
+        </div>
+        <div class="col-md-9 col-xs-12">
+          <div class="book-description col-xs-12">
+            <div class="row">
+              <div class="book-info col-md-6 col-xs-12">
+                <h2 class="book-title">
+                  <%= book.title %>
+                </h2>
+                <p>
+                  <%= t ".category" %>
+                  <b><%= book.name %></b>
+                </p>
+                <p>
+                  <%= t ".author" %>
+                  <b> <%= book.author %></b>
+                </p>
+                <p>
+                  <%= t ".number_of_pages" %>
+                  <b> <%= book.number_of_pages %></b>
+                </p>
+                <p id="votes">
+                  <i class="glyphicon glyphicon-user"></i>
+                  <%= t "books.book_info.votes", votes: book.reviews.size %>
+                </p>
+              </div>
+              <div class="col-xs-0 col-md-6 book-introduce panel panel-info">
+                <h5 class="panel panel-header"><%= t ".introduce" %></h5>
+                <p>
+                  <%= show_book_introduce book %>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <span class="stars"><%= book.rate %></span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-9 col-xs-12 slide-description">
-        <div class="book-title">
+    <% end %>
+  </section>
+</div>
+<% unless user_signed_in? %>
+  <div class="jumbotron row">
+    <h2><%= t :wellcome_to %></h2>
+    <%= link_to t(:sign_up_now), "#",
+      class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>
+<div class="row">
+  <hr>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-xs-0 col-sm-0">
+        <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
+          <%= render @categories %>
+        </ul>
+      </div>
+      <div class="col-md-9 col-xs-12">
+        <div class="row">
+          <div class="row">
+            <%= render "books/search_form" %>
+          </div>
         </div>
-        <div class="book-introduce">
+        <div class="row" id="books">
+          <%= render @books if @books.any? %>
         </div>
-        <div class="well">
+        <div class="row text-center" id="paginate">
+          <%= paginate @books, theme: "twitter-bootstrap-3" if @books.any? %>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </div>

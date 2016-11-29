@@ -1,15 +1,24 @@
 <div class="col-md-4 col-xs-6 text-center">
   <div class="book">
     <p><%= show_cover book %></p>
-    <p><%= show_book_title book %></p>
-    <p class="center"><span class="stars"><%= book.rate %></span></p>
-    <% if user_signed_in? %>
+    <div class="textbox">
+      <p class="text"><h3 style="color=black;"><%= show_book_title book %></h3></p>
+      <p class="text center"><span class="stars"><%= book.rate %></span></p>
+      <% if user_signed_in? %>
       <p class="form-inline">
         <div class="dropdown">
           <%= link_to "#", class: "dropdown-toggle btn btn-default",
             data: {toggle: "dropdown", role: "button"},
             aria: {haspopup: "true", expanded: "false"} do %>
-            <%= t ".mark" %>
+            <span id="current_mark_of_book_<%= book.id %>">
+              <% if @read_books && @read_books.include?(book) %>
+                <%= t :read %>
+              <% elsif @reading_books && @reading_books.include?(book)%>
+                <%= t :reading %>
+              <% else %>
+                <%= t ".mark" %>
+              <% end %>
+            </span>
             <span class="caret" ></span>
           <% end %>
           <ul class="dropdown-menu" >
@@ -45,5 +54,6 @@
         </div>
       </p>
     <% end %>
+    </div>    
   </div>
 </div>

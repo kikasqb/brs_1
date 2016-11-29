@@ -4,10 +4,6 @@ class Activity < ApplicationRecord
 
   enum activity_types: [:created, :updated, :removed]
 
-  enum activity_types: [:created, :updated, :removed]
-
-  enum activity_types: [:created, :updated, :removed]
-
   validates :target_id, presence: true
   validates :target_type, presence: true
   validates :action_type, presence: true

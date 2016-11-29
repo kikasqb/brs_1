@@ -72,7 +72,7 @@
   </div>
   <div class="row">
     <div class="col-md-10 col-xs-12 pull-right">
-      <%= render "comments/form" %>
+      <%= render "comments/form" if user_signed_in? %>
     </div>
   </div>
 </div>

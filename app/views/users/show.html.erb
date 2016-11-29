@@ -1,8 +1,8 @@
 <% provide :title, t(".title", name: @user.name) %>
 <div class="row">
   <%= render "users/user_info" %>
-  <div class="col-md-7 col-xs-12">
-    <div class="col-md-12 panel panel-success">
+  <div class="col-md-8 col-xs-12">
+  <div class="col-md-12 panel panel-success">
       <ul class="nav nav-tabs">
         <li id="user-activities" class="user-tabs active"
           onclick="openContentTimeline('user-activities');">
@@ -70,6 +70,17 @@
             <div class="row pull-right">
               <%= paginate @favorites, theme: "twitter-bootstrap-3",
                 param_name: :page_favorites %>
+            </div>
+          </div>
+        <% end %>
+        <% if @requests.any? %>
+          <div id="user-favorites-content" class="user-content" hidden>
+            <% @requests.each do |request| %>
+              <%= render "requests/request_well", request: request %>
+            <% end %>
+            <div class="row pull-right">
+              <%= paginate @requests, theme: "twitter-bootstrap-3",
+                param_name: :page_requests %>
             </div>
           </div>
         <% end %>

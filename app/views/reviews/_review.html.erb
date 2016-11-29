@@ -4,7 +4,12 @@
   </div>
   <div class="media-body">
       <h4 class="media-heading">
-        <%= link_to review.user.name, "#" %>
+        <%= link_to review.user.name, review.user %>
+      </h4>
+      <h3>
+        <%= link_to review.title, review %>
+      </h3>
+      <p>
         <small>
           <%= t :rate %>
         </small>
@@ -12,10 +17,6 @@
           <%= review.rate %>
         </span>
         <small><%= t :time_ago, time: time_ago_in_words(review.created_at) %></small>
-      </h4>
-      <p>
-        <%= link_to truncate(review.title,
-          length: Settings.length_sub_title, separator: " "), review %>
       </p>
       <p>
         <i class="glyphicon glyphicon-comment"></i>

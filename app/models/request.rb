@@ -19,13 +19,19 @@ class Request < ApplicationRecord
     joins_book.where("books.title LIKE ?", "%#{keyword}%")
   end
   scope :joins_book, ->do
-    joins("LEFT JOIN books ON book_id = users.id")
+    joins("LEFT JOIN books ON book_id = books.id")
   end
 
   delegate :title, to: :book, allow_nil: true
   delegate :name, to: :user, allow_nil: true
 
-  before_destroy :send_mail_approved_request
+  default_scope {where deleted: false}
+
+  after_update :send_mail_approved_request
+
+  def delete
+    self.update_attributes deleted: true
+  end
 
   def book
     Book.unscoped{super}
@@ -33,6 +39,8 @@ class Request < ApplicationRecord
 
   private
   def send_mail_approved_request
-    MailerWorker.perform_at MailerWorker::MAIL_APPROVED_REQUEST, id, Request.name
+    if deleted
+      MailerWorker.perform_async MailerWorker::MAIL_DELETE_REQUEST, id, Request.name
+    end
   end
 end
