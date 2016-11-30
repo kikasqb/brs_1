@@ -8,6 +8,7 @@ class Comment < ApplicationRecord
   default_scope {where deleted: false}
 
   delegate :name, to: :commentator, allow_nil: true
+  delegate :user_id, to: :commentator, allow_nil: true
   delegate :user, to: :commentator, allow_nil: true
   delegate :title, to: :commentator, allow_nil: true
   delegate :review, to: :commentator, allow_nil: true

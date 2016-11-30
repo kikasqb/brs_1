@@ -56,6 +56,50 @@
             <i class="glyphicon glyphicon-edit" ></i>
             <%= t ".review" %>
           <% end %>
+          <%= link_to "#", class: "dropdown-toggle btn btn-default",
+            data: {toggle: "dropdown", role: "button"},
+            aria: {haspopup: "true", expanded: "false"} do %>
+            <span id="current_mark_of_book_<%= @book.id %>">
+              <% if current_user.books.read.include?(@book) %>
+                <%= t :read %>
+              <% elsif current_user.books.reading.include?(@book)%>
+                <%= t :reading %>
+              <% else %>
+                <%= t ".mark" %>
+              <% end %>
+            </span>
+            <span class="caret" ></span>
+          <% end %>
+          <ul class="dropdown-menu" >
+            <li>
+              <%= label_tag "", class: "mark-item",
+                onclick: "markBookAs(#{@book.id}, true);" do %>
+                <i class="glyphicon glyphicon-tasks"></i>
+                <%= t :read %>
+                <% if current_user.books.read.include?(@book) %>
+                <i class="pull-right glyphicon glyphicon-ok"
+                    id="<%= "mark-true-#{@book.id}" %>"></i>
+                <% else %>
+                  <i class="pull-right" id="<%= "mark-true-#{@book.id}" %>">
+                  </i>
+                <% end %>
+              <% end %>
+            </li>
+            <li>
+              <%= label_tag "", class: "mark-item",
+                onclick: "markBookAs(#{@book.id}, false);" do %>
+                <i class="glyphicon glyphicon-bookmark"></i>
+                <%= t :reading %>
+                <% if current_user.books.reading.include?(@book) %>
+                  <i class="pull-right glyphicon glyphicon-ok"
+                    id="<%= "mark-false-#{@book.id}" %>"></i>
+                <% else %>
+                  <i class="pull-right" id="<%= "mark-false-#{@book.id}" %>">
+                  </i>
+                <% end %>
+              <% end %>
+            </li>
+          </ul>
         <% end %>
       </div>
     </div>

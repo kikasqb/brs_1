@@ -1,0 +1,36 @@
+version: '2.1'
+services:
+  db:
+    image: mysql
+    ports:
+      - "3307:3307"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123123
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123123
+      MYSQL_DATABASE: 123123
+  redis:
+    image: redis:latest
+  web:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/smart_athlete
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      - REDIS_URL=redis://redis:6379
+
+  sidekiq:
+    build: .
+    volumes:
+      - .:/smart_athlete
+    command: bundle exec sidekiq
+    depends_on:
+      - redis
+      - db
+    environment:
+      - REDIS_URL=redis://redis:6379
+

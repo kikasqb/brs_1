@@ -21,7 +21,7 @@ max_length_review_title: 255
 max_length_review_content: 100000
 max_rate: 5
 length_sub_introduce: 255
-length_sub_title: 30
+length_sub_title: 40
 true: "true"
 per_page_comments: 10
 per_page_user: 12
