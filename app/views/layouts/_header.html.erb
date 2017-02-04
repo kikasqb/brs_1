@@ -1,5 +1,5 @@
 <div class="row">
-  <nav class="navbar navbar-default navbar-fixed-top navbar-custom" >
+  <nav class="navbar navbar-default navbar-fixed-top navbar-custom" style="background: #f0eeeb;">
     <div class="container" >
       <div class="navbar-header" >
         <button type="button" class="navbar-toggle collapsed"
@@ -14,14 +14,15 @@
       <div id="navbar" class="navbar-collapse collapse" >
         <ul class="nav navbar-nav navbar-left" >
           <li>
-            <%= link_to root_url, class: "header-item"  do %>
-              <%= image_tag Settings.default_icon, size: Settings.icon_size %>
-            <% end %>
+            <div class="container_logo">
+                <%= link_to root_url, class: "header-item"  do %>
+                  <%= image_tag Settings.default_icon, id: 'root_logo', size: Settings.icon_size %>
+                <% end %>
+            </div>            
           </li>
           <li class="header-nav-item right-header-item" >
-            <%= link_to books_path, class: "hear-item" do %>
-              <i class="glyphicon glyphicon-book" ></i>
-              <%= t ".books" %>
+            <%= link_to books_path, id: 'root_name', class: "hear-item" do %>
+              <%= image_tag 'coollogo_com-31528442.png', width: 230%>
             <% end %>
           </li>
           <% if user_signed_in? %>
