@@ -3,7 +3,7 @@ package com.example.pccuong.appbook.Presenter.TrangChu.XulyMenu;
 import android.util.Log;
 
 import com.example.pccuong.appbook.model.LoginBook;
-import com.example.pccuong.appbook.model.Categories;
+import com.example.pccuong.appbook.model.ObjectClass.Categories;
 import com.example.pccuong.appbook.model.DataJsonMenu;
 import com.example.pccuong.appbook.View.HomePage.ViewXuLyMenu;
 import com.example.pccuong.appbook.connectInternet.DowloadJSON;
@@ -18,28 +18,30 @@ import java.util.concurrent.ExecutionException;
  * Created by PCCuong on 2/6/2017.
  */
 
-public class PresenteLogicXuLyMenu implements  IPresenteXulyMenu {
+public class PresenteLogicXuLyMenu implements IPresenteXulyMenu {
     ViewXuLyMenu viewXuLyMenu;
-    String tennguoidung = "";
-    public  PresenteLogicXuLyMenu(ViewXuLyMenu viewXuLyMenu){
+
+
+    public PresenteLogicXuLyMenu(ViewXuLyMenu viewXuLyMenu) {
         this.viewXuLyMenu = viewXuLyMenu;
     }
+
     @Override
     public void layDanhSachMenu() {
         List<Categories> categoriesList;
-        String dataJSON ="";
-        List<HashMap<String,String>> attrs = new ArrayList<>();
+        String dataJSON = "";
+        List<HashMap<String, String>> attrs = new ArrayList<>();
         String duongdan = "http://192.168.17.2/Appbook/loaisanpham.php";
 
-        HashMap<String,String> hsHam = new HashMap<>();
-        hsHam.put("ham","layListMenu");
+        HashMap<String, String> hsHam = new HashMap<>();
+        hsHam.put("ham", "layListMenu");
 
-        HashMap<String,String> hashMap = new HashMap<>();
-        hashMap.put("id","9");
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("id_product","0");
 
         attrs.add(hashMap);
         attrs.add(hsHam);
-        DowloadJSON dowloadJSON = new DowloadJSON(duongdan,attrs);
+        DowloadJSON dowloadJSON = new DowloadJSON(duongdan, attrs);
         dowloadJSON.execute();
 
         try {
@@ -52,15 +54,15 @@ public class PresenteLogicXuLyMenu implements  IPresenteXulyMenu {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-   Log.d("kiemtrachuoimotmach", attrs.toString());
+        Log.d("kiemtrachuoimotmach", attrs.toString());
     }
 
     @Override
     public AccessToken layTenNguoiDungFacebook() {
         LoginBook loginBook = new LoginBook();
-        AccessToken accessToken =  loginBook.layTockenFacebookRuntime();
+        AccessToken accessToken = loginBook.layTockenFacebookRuntime();
         DataJsonMenu dataJsonMenu = new DataJsonMenu();
-        return  accessToken;
+        return accessToken;
     }
 
 }

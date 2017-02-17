@@ -6,6 +6,16 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="drawerArrowStyle">@style/changecolordrawertoogle</item>
     </style>
+ 
+
+    <style name="changecolordrawertoogle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/colorWhite</item>
+    </style>
+    <declare-styleable name="PasswordEditText">
+<attr name="useStrike" format="boolean">
+</attr>
+    </declare-styleable>
 
 </resources>

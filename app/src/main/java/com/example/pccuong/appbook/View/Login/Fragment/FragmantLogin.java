@@ -28,11 +28,12 @@ import java.util.Arrays;
  * Created by PCCuong on 12/31/2016.
  */
 
-public class FragmantLogin  extends Fragment  implements View.OnClickListener{
-    Button btnLoginFacebook,btnLoginGoogle,btnLogin;
+public class FragmantLogin extends Fragment implements View.OnClickListener {
+    Button btnLoginFacebook, btnLoginGoogle, btnLogin;
     CallbackManager callbackManager;
     LoginBook loginBook;
-    EditText tenDangNhap,matKhau;
+    EditText tenDangNhap, matKhau;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,27 +46,25 @@ public class FragmantLogin  extends Fragment  implements View.OnClickListener{
             public void onSuccess(LoginResult loginResult) {
                 Intent iTrangChu = new Intent(getActivity(), HomePageActivity.class);
                 startActivity(iTrangChu);
-        Log.d("kiemtra"," thanh cong");
+                Log.d("kiemtra", " thanh cong");
             }
 
             @Override
             public void onCancel() {
-                Log.d("kiemtra"," thoat");
+                Log.d("kiemtra", " thoat");
             }
 
             @Override
             public void onError(FacebookException error) {
-                Log.d("kiemtra"," Erro");
+                Log.d("kiemtra", " Erro");
             }
         });
         loginBook = new LoginBook();
         tenDangNhap = (EditText) view.findViewById(R.id.tendangnhap);
         matKhau = (EditText) view.findViewById(R.id.matkhau);
-
         btnLogin = (Button) view.findViewById(R.id.btnLogin);
-
         btnLoginFacebook = (Button) view.findViewById(R.id.btnLoginFacebook);
-        btnLoginGoogle  = (Button) view.findViewById(R.id.btnloginGoogle);
+        btnLoginGoogle = (Button) view.findViewById(R.id.btnloginGoogle);
         btnLoginFacebook.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
         return view;
@@ -74,19 +73,19 @@ public class FragmantLogin  extends Fragment  implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        switch (id){
-            case R.id.btnLoginFacebook :
+        switch (id) {
+            case R.id.btnLoginFacebook:
                 LoginManager.getInstance().logInWithReadPermissions(FragmantLogin.this, Arrays.asList("public_profile"));
                 break;
-            case R.id.btnLogin :
+            case R.id.btnLogin:
                 String dangNhap = tenDangNhap.getText().toString();
                 String matkhau = matKhau.getText().toString();
-                boolean kiemtra = loginBook.kiemTraLogin(getActivity(),dangNhap,matkhau);
-                if(kiemtra){
+                boolean kiemtra = loginBook.kiemTraLogin(getActivity(), dangNhap, matkhau);
+                if (kiemtra) {
                     Intent iTrangChu = new Intent(getActivity(), HomePageActivity.class);
                     startActivity(iTrangChu);
-                }else  {
-                    Toast.makeText(getActivity(),"Dang Nhap Ko Thanh Cong",Toast.LENGTH_SHORT);
+                } else {
+                    Toast.makeText(getActivity(), "Dang Nhap Ko Thanh Cong", Toast.LENGTH_SHORT);
                 }
                 break;
         }
@@ -97,6 +96,6 @@ public class FragmantLogin  extends Fragment  implements View.OnClickListener{
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode,resultCode,data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 }

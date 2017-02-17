@@ -23,9 +23,9 @@ public class ViewBagerHomePage extends FragmentPagerAdapter{
             case 0:
                 BookTuNhieuFragmant bookTuNhieuFragmant = new BookTuNhieuFragmant();
                 return  bookTuNhieuFragmant;
-            case 1:
-                BookXaHoiFragmant bookXaHoiFragmant = new BookXaHoiFragmant();
-                return bookXaHoiFragmant;
+//            case 1:
+//                BookXaHoiFragmant bookXaHoiFragmant = new BookXaHoiFragmant();
+//                return bookXaHoiFragmant;
             default: return  null;
         }
     }
@@ -35,7 +35,7 @@ public class ViewBagerHomePage extends FragmentPagerAdapter{
 
     @Override
     public int getCount() {
-        return 2;
+        return 1;
     }
 
     @Override
@@ -43,8 +43,8 @@ public class ViewBagerHomePage extends FragmentPagerAdapter{
         switch (position){
             case 0:
                 return "Tự Nhiên";
-            case 1:
-                return "Xã Hội";
+//            case 1:
+//                return "Xã Hội";
             default: return null;
         }
 

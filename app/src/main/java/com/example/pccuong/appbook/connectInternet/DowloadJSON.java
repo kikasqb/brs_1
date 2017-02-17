@@ -16,7 +16,10 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URI;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,33 +28,33 @@ import java.util.Map;
  */
 
 public class DowloadJSON extends AsyncTask<String,Void,String> {
-    String linkDowload;
-    List<HashMap<String, String>> attrs;
-    StringBuilder stringBuilder;
-    boolean method  = true;
+    String duongdan;
+    List<HashMap<String,String>> attrs;
+    StringBuilder dulieu;
+    boolean method = true;
 
-    public DowloadJSON(String linkDowload) {
-        this.linkDowload = linkDowload;
+    public DowloadJSON(String duongdan){
+        this.duongdan = duongdan;
         method = true;
-
     }
 
-    public DowloadJSON(String linkDowload, List<HashMap<String, String>> attrs) {
-        this.linkDowload = linkDowload;
+    public DowloadJSON(String duongdan, List<HashMap<String,String>> attrs){
+        this.duongdan = duongdan;
         this.attrs = attrs;
         method = false;
     }
 
     @Override
-    protected String doInBackground(String... params) {
+    protected String doInBackground(String... strings) {
         String data = "";
         try {
-            URL url = new URL(linkDowload);
+            URL url = new URL(duongdan);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-            if (!method){
-               data = methodPost(httpURLConnection);
-            }else {
-              data =  methodGet(httpURLConnection);
+
+            if(!method){
+                data = methodPost(httpURLConnection);
+            }else{
+                data = methodGet(httpURLConnection);
             }
 
 
@@ -60,76 +63,82 @@ public class DowloadJSON extends AsyncTask<String,Void,String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Log.d("KiemTraDOWNLOADJSONGET", data);
+
+        Log.d("dulieu",data);
         return data;
     }
 
-    private String methodGet(HttpURLConnection httpURLConnection) {
+    private String methodGet(HttpURLConnection httpURLConnection){
         String data = "";
         InputStream inputStream = null;
         try {
             httpURLConnection.connect();
             inputStream = httpURLConnection.getInputStream();
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            InputStreamReader reader = new InputStreamReader(inputStream);
+            BufferedReader bufferedReader = new BufferedReader(reader);
 
-
-            stringBuilder = new StringBuilder();
-            String dong = "";
-            while ((dong = bufferedReader.readLine()) != null) {
-                stringBuilder.append(dong);
-
+            dulieu = new StringBuilder();
+            String line = "";
+            while ((line = bufferedReader.readLine()) !=null){
+                dulieu.append(line);
             }
-            data = stringBuilder.toString();
-            bufferedReader.close();
-            inputStreamReader.close();
-            inputStream.close();
 
+            data = dulieu.toString();
+            bufferedReader.close();
+            reader.close();
+            inputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Log.d("KiemTraDOWNLOADJSONPOST", data);
 
         return data;
     }
 
-    private String methodPost(HttpURLConnection httpURLConnection) {
+    private String methodPost(HttpURLConnection httpURLConnection){
         String data = "";
-        String key="";
-        String values="";
+        String key = "";
+        String value = "";
+
         try {
             httpURLConnection.setRequestMethod("POST");
-            httpURLConnection.setDoInput(true);
             httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+
             Uri.Builder builder = new Uri.Builder();
+
+
+
             int count = attrs.size();
-            for (int i = 0; i < count; i++) {
-                for (Map.Entry<String, String> entry : attrs.get(i).entrySet()) {
-                     key = entry.getKey();
-                     values = entry.getValue();
+            for(int i=0;i<count;i++){
+
+                for(Map.Entry<String,String> values : attrs.get(i).entrySet()){
+                    key = values.getKey();
+                    value = values.getValue();
                 }
-                builder.appendQueryParameter(key,values);
+
+                builder.appendQueryParameter(key,value);
             }
             String query = builder.build().getEncodedQuery();
+
             OutputStream outputStream = httpURLConnection.getOutputStream();
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-            BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-             bufferedWriter.write(query);
-            bufferedWriter.flush();
-            bufferedWriter.close();
-            outputStreamWriter.close();
+            OutputStreamWriter streamWriter = new OutputStreamWriter(outputStream);
+            BufferedWriter writer = new BufferedWriter(streamWriter);
+
+            writer.write(query);
+            writer.flush();
+            writer.close();
+            streamWriter.close();
             outputStream.close();
+
             data = methodGet(httpURLConnection);
-
-
 
         } catch (ProtocolException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Log.d("kiemTRAcHUOIjSONpost", data);
-        return  data;
 
+
+        return data;
     }
 }

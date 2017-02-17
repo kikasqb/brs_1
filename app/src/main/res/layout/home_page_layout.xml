@@ -71,10 +71,10 @@
     <ExpandableListView
         android:id="@+id/edMenu"
         android:layout_width="match_parent"
-        android:choiceMode="singleChoice"
+        android:choiceMode="multipleChoice"
         android:layout_height="match_parent"
         android:background="@color/colorWhite"
-        android:groupIndicator="@null"
+      android:groupIndicator="@null"
         android:layout_gravity="start">
 
     </ExpandableListView>
