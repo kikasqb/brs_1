@@ -1,8 +1,4 @@
-<% provide :title, t(".title", name: @user.name) %>
-<div class="row">
-  <%= render "users/user_info" %>
-  <div class="col-md-8 col-xs-12">
-  <div class="col-md-12 panel panel-success">
+<div class="col-md-12 panel panel-success">
       <ul class="nav nav-tabs">
         <li id="user-activities" class="user-tabs active"
           onclick="openContentTimeline('user-activities');">
@@ -86,5 +82,3 @@
         <% end %>
       </div>
     </div>
-  </div>
-</div>

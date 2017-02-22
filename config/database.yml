@@ -9,4 +9,4 @@ default: &default
 
 development:
   <<: *default
-  database: smart_athlete
+  database: brs_1

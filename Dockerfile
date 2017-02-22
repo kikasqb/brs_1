@@ -15,9 +15,9 @@ RUN \
   sed -i 's/^\(daemonize .*\)$/# \1/' /etc/redis/redis.conf && \
   sed -i 's/^\(dir .*\)$/# \1\ndir \/data/' /etc/redis/redis.conf && \
   sed -i 's/^\(logfile .*\)$/# \1/' /etc/redis/redis.conf
-RUN mkdir /smart_athlete
-WORKDIR /smart_athlete
-ADD Gemfile /smart_athlete/Gemfile
-ADD Gemfile.lock /smart_athlete/Gemfile.lock
+RUN mkdir /brs_1
+WORKDIR /brs_1
+ADD Gemfile /brs_1/Gemfile
+ADD Gemfile.lock /brs_1/Gemfile.lock
 RUN bundle install
-ADD . /smart_athlete
+ADD . /brs_1

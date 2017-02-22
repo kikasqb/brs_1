@@ -12,4 +12,127 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
+ @import url('http://fonts.googleapis.com/css?family=Ubuntu:400,700%7CDroid+Serif:400,400italic,700,700italic%7CAguafina+Script') print;
+
+ @-webkit-keyframes shakeit {
+0% { -webkit-transform: rotate(0deg) translate(2px, 1px); }
+10% { -webkit-transform: rotate(2deg) translate(1px, 2px); }
+20% { -webkit-transform: rotate(-2deg) translate(3px, 0px) ; }
+30% { -webkit-transform: rotate(0deg) translate(0px, -2px); }
+40% { -webkit-transform: rotate(-2deg) translate(-1px, 1px); }
+50% { -webkit-transform: rotate(2deg) translate(1px, -2px); }
+60% { -webkit-transform: rotate(0deg) translate(3px, -1px); }
+70% { -webkit-transform: rotate(2deg) translate(-2px, -1px); }
+80% { -webkit-transform: rotate(-2deg) translate(1px, 1px); }
+90% { -webkit-transform: rotate(0deg) translate(-2px, -2px); }
+100% { -webkit-transform: rotate(2deg) translate(-1px, 2px); }
+}
+@keyframes shakeit {
+0% { transform: rotate(0deg) translate(2px, 1px); }
+10% { transform: rotate(2deg) translate(1px, 2px); }
+20% { transform: rotate(-2deg) translate(3px, 0px) ; }
+30% { transform: rotate(0deg) translate(0px, -2px); }
+40% { transform: rotate(-2deg) translate(-1px, 1px); }
+50% { transform: rotate(2deg) translate(1px, -2px); }
+60% { transform: rotate(0deg) translate(3px, -1px); }
+70% { transform: rotate(2deg) translate(-2px, -1px); }
+80% { transform: rotate(-2deg) translate(1px, 1px); }
+90% { transform: rotate(0deg) translate(-2px, -2px); }
+100% { transform: rotate(2deg) translate(-1px, 2px); }
+}
+#root_name{
+	padding-top: 0;
+	font-family: "Aguafina Script", Helvetica, Arial, sans-serif;
+	overflow: hidden;
+	color: #ccad52;
+	font-size: 24px;
+	font-weight: normal;
+	text-transform: none;
+	letter-spacing: 0;
+	-webkit-transition: all 0.7s ease;
+	transition: all 0.7s ease;
+}
+#root_name:hover {
+	color:rgb(11, 91, 221);
+	-webkit-animation-name: shakeit;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+	animation-name: shakeit;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+.container_logo #root_logo, .container_logo:hover #root_logo{
+	margin:10px;
+	-webkit-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	border-bottom-right-radius: 50%;
+	border-bottom-left-radius: 50%;
+	border-top-right-radius: 50%;
+	opacity:0.9;
+}
+.container_logo:hover #root_logo{
+	-webkit-transform: rotateY(360deg);
+	-webkit-transform-style: preserve-3d;
+	transform: rotateY(360deg);
+	transform-style: preserve-3d;
+	box-shadow: 10px 10px 10px rgb(114, 121, 132);
+	opacity:1;
+}
+
+.footer {
+  bottom: 0;
+  height: 200px;
+  background-color: #111;
+  text-align: center;
+}
+
+.fa-twitter {
+    color: #4099FF;
+}
+
+.fa-facebook {
+    color: #3B5998;
+}
+
+.fa-youtube-play {
+    color: #e52d27;
+}
+
+.fa-rss {
+    color: #FF6600;
+}
+
+.fa-vine {
+    color: #00a478;
+}
+
+.fa-flickr {
+    color: #ff0084;
+}
+
+.fa-twitch {
+    color: #6441A5;
+}
+
+.fa-linkedin {
+    color: #007bb6;
+}
+
+.fa {
+    opacity: 0.7;
+    transition: 1s;
+    -webkit-transition: 1s;
+}
+
+.fa:hover{
+    opacity: 1;
+    transition: 1s;
+    -webkit-transition: 1s;
+}
+.footer-logo{
+	margin-bottom: 50px;
+}
