@@ -6,7 +6,7 @@ en:
   logout: "Logout"
   login: "Login"
   notifications: "Notifications"
-  wellcome_to: "Welcome to Framgia Books Review"
+  wellcome_to: "Welcome to Books Review"
   wellcome: "Welcome to Framgia Books Review, %{name}!"
   user_not_found: "User not found!!!"
   the: "the"
