@@ -1,89 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:padding="10dp"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp">
-        <com.example.pccuong.appbook.customview.ClearEditText
-            android:id="@+id/tendangnhap"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tên Đăng Nhập"
-            android:textColor="#000"
-            />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_margin="10dp">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp">
-        <com.example.pccuong.appbook.customview.PasswordEditText
-            android:id="@+id/matkhau"
+            <EditText
+                android:id="@+id/tendangnhap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tên Đăng Nhập"
+                android:textColor="@color/colorBlack" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-             app:useStrike="true"
-            android:hint = "Mật Khẩu" />
-    </android.support.design.widget.TextInputLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Quên mật khẩu?"
-        android:gravity="right"
-        android:layout_margin="10dp"/>
-    <Button
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnLogin"
-        android:text="Đăng Nhập"
-        android:textColor="@color/colorWhite"
-        android:background="@color/colorAccent"
-       />
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Hoặc Đăng Nhập Bằng"
-    android:layout_margin="10dp"
-    android:gravity="center"/>
+            android:layout_margin="10dp">
 
-<LinearLayout
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
+            <com.example.pccuong.appbook.customview.PasswordEditText
+                android:id="@+id/matkhau"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mật Khẩu"
+                app:useStrike="true" />
+        </android.support.design.widget.TextInputLayout>
 
-    android:layout_height="wrap_content">
-   <Button
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_weight="1"
-       android:text="Facebook"
-       android:id="@+id/btnLoginFacebook"
-       android:textColor="@color/colorFacebook"
-       android:background="@drawable/vienfacebook"
-       android:drawableLeft="@drawable/facebookiconsmall"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:id="@+id/btnloginGoogle"
-        android:background="@drawable/viengoogle"
-        android:text="Google"
-        android:textColor="@color/colorGoogle"
-        android:drawableLeft="@drawable/googleplussmall"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="right"
+            android:hint="Quên mật khẩu?" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/colorAccent"
+            android:text="Đăng Nhập"
+            android:textColor="@color/colorWhite" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:hint="Hoặc Đăng Nhập Bằng" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnLoginFacebook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/vienfacebook"
+                android:drawableLeft="@drawable/facebookiconsmall"
+                android:text="Facebook"
+                android:textColor="@color/colorFacebook" />
+
+            <Button
+                android:id="@+id/btnloginGoogle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/viengoogle"
+                android:drawableLeft="@drawable/googleplussmall"
+                android:text="Google"
+                android:textColor="@color/colorGoogle" />
+
+        </LinearLayout>
 
 
-
-
-
-
-
-
-
-
-</LinearLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

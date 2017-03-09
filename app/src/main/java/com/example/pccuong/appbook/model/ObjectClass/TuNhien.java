@@ -8,6 +8,25 @@ import java.util.List;
 
 public class TuNhien {
     List<NhaXuatBan> nhaXuatBans;
+    boolean kiemtra;
+
+    public boolean isKiemtra() {
+        return kiemtra;
+    }
+
+    public void setKiemtra(boolean kiemtra) {
+        this.kiemtra = kiemtra;
+    }
+
+    public List<Books> getBookses() {
+        return bookses;
+    }
+
+    public void setBookses(List<Books> bookses) {
+        this.bookses = bookses;
+    }
+
+    List<Books> bookses;
     String imgeHinhSanPham;
 
     public List<NhaXuatBan> getNhaXuatBans() {

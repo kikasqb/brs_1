@@ -61,17 +61,13 @@ public class LoginBook {
 
         HashMap<String, String> hsHam = new HashMap<>();
         hsHam.put("ham", "KiemTraDangNhap");
-
         HashMap<String, String> hsEmail = new HashMap<>();
         hsEmail.put("email", email);
-
         HashMap<String, String> hsMatKhau = new HashMap<>();
         hsMatKhau.put("encrypted_password", password);
         attrs.add(hsHam);
         attrs.add(hsEmail);
         attrs.add(hsMatKhau);
-
-
         DowloadJSON dowloadJSON = new DowloadJSON(duongdan, attrs);
         dowloadJSON.execute();
 

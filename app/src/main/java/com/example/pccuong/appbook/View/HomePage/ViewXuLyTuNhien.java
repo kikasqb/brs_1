@@ -1,6 +1,8 @@
 package com.example.pccuong.appbook.View.HomePage;
 
+import com.example.pccuong.appbook.model.ObjectClass.Books;
 import com.example.pccuong.appbook.model.ObjectClass.NhaXuatBan;
+import com.example.pccuong.appbook.model.ObjectClass.TuNhien;
 
 import java.util.List;
 
@@ -9,5 +11,6 @@ import java.util.List;
  */
 
 public interface ViewXuLyTuNhien {
-    void HienThiTuNhien(List<NhaXuatBan> nhaXuatBans);
+    void HienThiTuNhien(List<TuNhien> tuNhiens);
+
 }

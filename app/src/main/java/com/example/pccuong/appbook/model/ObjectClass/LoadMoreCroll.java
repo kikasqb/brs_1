@@ -12,12 +12,14 @@ import android.util.Log;
 
 public class LoadMoreCroll extends RecyclerView.OnScrollListener {
     int itemFirst = 0;
-    int itemLoastFirst = 6;
     int itemSum = 0;
+    int itemLoastFirst = 10;
     RecyclerView.LayoutManager layoutManager;
+    ILoadMore iLoadMore;
 
-    public LoadMoreCroll(RecyclerView.LayoutManager layoutManager) {
+    public LoadMoreCroll(RecyclerView.LayoutManager layoutManager, ILoadMore iLoadMore) {
         this.layoutManager = layoutManager;
+        this.iLoadMore = iLoadMore;
 
     }
 
@@ -32,7 +34,8 @@ public class LoadMoreCroll extends RecyclerView.OnScrollListener {
         }
 
         if (itemSum <= (itemFirst + itemLoastFirst)) {
-            Log.d("kiemtraloadMore", itemSum + "-" + itemFirst);
+            iLoadMore.LoadItem(itemSum);
+          //  Log.d("kiemtraloadMore", itemSum + "-" + itemFirst);
 
         }
     }

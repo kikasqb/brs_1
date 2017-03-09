@@ -2,7 +2,10 @@ package com.example.pccuong.appbook.View.HomePage;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,10 +15,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 
 import com.example.pccuong.appbook.Adapter.ExpendAdapter;
 import com.example.pccuong.appbook.Adapter.ViewBagerHomePage;
-import com.example.pccuong.appbook.model.LoginBook;
+import com.example.pccuong.appbook.View.timkiem.TimKiemActivity;
+import com.example.pccuong.appbook.model.login_registor.LoginBook;
 import com.example.pccuong.appbook.model.ObjectClass.Categories;
 import com.example.pccuong.appbook.Presenter.TrangChu.XulyMenu.PresenteLogicXuLyMenu;
 import com.example.pccuong.appbook.R;
@@ -35,8 +40,11 @@ import java.util.List;
  * Created by PCCuong on 11/30/2016.
  */
 
-public class HomePageActivity extends AppCompatActivity implements ViewXuLyMenu {
+public class HomePageActivity extends AppCompatActivity implements ViewXuLyMenu, AppBarLayout.OnOffsetChangedListener {
 
+    public static final String SEVER_NAME = "http://192.168.17.2/Appbook";
+
+    Toolbar toolbar;
     ViewPager viewPager;
     TabLayout tabLayout;
     Menu menu;
@@ -48,7 +56,8 @@ public class HomePageActivity extends AppCompatActivity implements ViewXuLyMenu 
     AccessToken accessToken;
     LoginBook loginBook;
     String tennguoidung = "";
-
+    CollapsingToolbarLayout collapsingToolbarLayout;
+    AppBarLayout appBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +65,8 @@ public class HomePageActivity extends AppCompatActivity implements ViewXuLyMenu 
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.home_page_layout);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("");
         expandableListView = (ExpandableListView) findViewById(R.id.edMenu);
         setSupportActionBar(toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -64,6 +74,8 @@ public class HomePageActivity extends AppCompatActivity implements ViewXuLyMenu 
         drawerLayout.addDrawerListener(drawerToggle);
         viewPager = (ViewPager) findViewById(R.id.tabviewhomepage);
         tabLayout = (TabLayout) findViewById(R.id.tablayoutList);
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingtoolbarlayout);
+        appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
         ViewBagerHomePage viewBagerHomePage = new ViewBagerHomePage(getSupportFragmentManager());
         viewPager.setAdapter(viewBagerHomePage);
         viewBagerHomePage.notifyDataSetChanged();
@@ -72,6 +84,7 @@ public class HomePageActivity extends AppCompatActivity implements ViewXuLyMenu 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         drawerToggle.syncState();
         logicXuLyMenu = new PresenteLogicXuLyMenu(this);
+        appBarLayout.addOnOffsetChangedListener(this);
         logicXuLyMenu.layDanhSachMenu();
 
         logicXuLyMenu.layTenNguoiDungFacebook();
@@ -154,6 +167,10 @@ public class HomePageActivity extends AppCompatActivity implements ViewXuLyMenu 
                     this.onCreateOptionsMenu(this.menu);
                 }
                 break;
+            case R.id.searchMenu:
+                Intent iTimKiem = new Intent(this, TimKiemActivity.class);
+                startActivity(iTimKiem);
+                break;
 
         }
         return true;
@@ -165,5 +182,27 @@ public class HomePageActivity extends AppCompatActivity implements ViewXuLyMenu 
         expandableListView.setAdapter(expendAdapter);
         expendAdapter.notifyDataSetChanged();
 
+    }
+
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
+        if (collapsingToolbarLayout.getHeight() + verticalOffset <= 1.5 * ViewCompat.getMinimumHeight(collapsingToolbarLayout)) {
+            LinearLayout linearLayout = (LinearLayout) appBarLayout.findViewById(R.id.linearTim);
+            linearLayout.animate().alpha(0).setDuration(200);
+
+            MenuItem searchMenu = menu.findItem(R.id.searchMenu);
+            searchMenu.setVisible(true);
+        } else {
+            LinearLayout linearLayout = (LinearLayout) appBarLayout.findViewById(R.id.linearTim);
+            linearLayout.animate().alpha(1).setDuration(200);
+            try {
+                MenuItem searchMenu = menu.findItem(R.id.searchMenu);
+                searchMenu.setVisible(false);
+            } catch (Exception e) {
+
+            }
+
+        }
     }
 }

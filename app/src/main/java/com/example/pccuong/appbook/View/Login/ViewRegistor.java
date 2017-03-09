@@ -5,4 +5,6 @@ package com.example.pccuong.appbook.View.Login;
  */
 
 public interface ViewRegistor {
+    void DangKyThangCong();
+    void DangKyThatBai();
 }

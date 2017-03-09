@@ -5,4 +5,6 @@ package com.example.pccuong.appbook.model.ObjectClass;
  */
 
 public interface ILoadMore {
+    void LoadItem(int itemLoad);
+
 }

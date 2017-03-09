@@ -1,5 +1,6 @@
 package com.example.pccuong.appbook.customview;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -19,6 +20,7 @@ import com.example.pccuong.appbook.R;
 public class ClearEditText  extends EditText {
     Drawable crossx,nonecrossx,drawable;
     Boolean visible = false;
+
     public ClearEditText(Context context) {
         super(context);
         khoitao();
@@ -34,7 +36,7 @@ public class ClearEditText  extends EditText {
         khoitao();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public ClearEditText(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         khoitao();
@@ -43,6 +45,7 @@ public class ClearEditText  extends EditText {
     private void khoitao(){
         crossx = ContextCompat.getDrawable(getContext(), R.drawable.ic_clear_black_24dp).mutate();
         nonecrossx = ContextCompat.getDrawable(getContext(),android.R.drawable.screen_background_light_transparent).mutate();
+
         cauhinh();
     }
 

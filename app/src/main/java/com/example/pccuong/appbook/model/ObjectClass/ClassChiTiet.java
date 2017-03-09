@@ -5,4 +5,13 @@ package com.example.pccuong.appbook.model.ObjectClass;
  */
 
 public class ClassChiTiet {
+    int nameChiTiet;
+
+    public int getNameChiTiet() {
+        return nameChiTiet;
+    }
+
+    public void setNameChiTiet(int nameChiTiet) {
+        this.nameChiTiet = nameChiTiet;
+    }
 }

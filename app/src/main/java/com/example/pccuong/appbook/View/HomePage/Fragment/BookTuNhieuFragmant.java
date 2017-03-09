@@ -11,10 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.pccuong.appbook.Adapter.AdapterFragmantTuNhien;
+import com.example.pccuong.appbook.Adapter.AdapterTopTuNhien;
 import com.example.pccuong.appbook.Adapter.AdapterTuNhien;
 import com.example.pccuong.appbook.Presenter.TrangChu.XulyMenu.tunhien.PresenterLogicTuNhien;
 import com.example.pccuong.appbook.R;
 import com.example.pccuong.appbook.View.HomePage.ViewXuLyTuNhien;
+import com.example.pccuong.appbook.model.ObjectClass.Books;
 import com.example.pccuong.appbook.model.ObjectClass.NhaXuatBan;
 import com.example.pccuong.appbook.model.ObjectClass.TuNhien;
 
@@ -42,10 +44,8 @@ public class BookTuNhieuFragmant  extends Fragment implements ViewXuLyTuNhien {
     }
 
     @Override
-    public void HienThiTuNhien(List<NhaXuatBan> nhaXuatBans) {
-        TuNhien tuNhiens = new TuNhien();
-        tuNhiens.setNhaXuatBans(nhaXuatBans);
-        tuNhienList.add(tuNhiens);
+    public void HienThiTuNhien(List<TuNhien> tuNhiens) {
+          tuNhienList = tuNhiens;
         AdapterTuNhien adapterTuNhien = new AdapterTuNhien(getContext(),tuNhienList);
         RecyclerView.LayoutManager  layoutManager = new LinearLayoutManager(getContext());
         recyclerViews.setLayoutManager(layoutManager);
@@ -53,4 +53,6 @@ public class BookTuNhieuFragmant  extends Fragment implements ViewXuLyTuNhien {
         adapterTuNhien.notifyDataSetChanged();
 
     }
+
+
 }

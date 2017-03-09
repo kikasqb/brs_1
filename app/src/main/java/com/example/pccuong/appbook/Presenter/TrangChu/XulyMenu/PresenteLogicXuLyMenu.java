@@ -2,7 +2,7 @@ package com.example.pccuong.appbook.Presenter.TrangChu.XulyMenu;
 
 import android.util.Log;
 
-import com.example.pccuong.appbook.model.LoginBook;
+import com.example.pccuong.appbook.model.login_registor.LoginBook;
 import com.example.pccuong.appbook.model.ObjectClass.Categories;
 import com.example.pccuong.appbook.model.DataJsonMenu;
 import com.example.pccuong.appbook.View.HomePage.ViewXuLyMenu;

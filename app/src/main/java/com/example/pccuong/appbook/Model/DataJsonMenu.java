@@ -49,7 +49,6 @@ public class DataJsonMenu {
 
     }
 
-
     public List<Categories> getChildPositionMenu(int id) {
         List<Categories> listLoaiSanPham = new ArrayList<>();
         List<HashMap<String, String>> attrs = new ArrayList<>();

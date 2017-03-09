@@ -19,11 +19,9 @@ public class FragmantSlider extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-
         View view = inflater.inflate(R.layout.layout_fragmant_slider,container,false);
         Bundle bundle = getArguments();
-        String linkHinh = bundle.getString("linkhinh");
+        String linkHinh = bundle.getString("imagenho");
         ImageView imageView = (ImageView) view.findViewById(R.id.imHinhSlider);
         Picasso.with(getContext()).load(linkHinh).into(imageView);
         return view;

@@ -15,23 +15,26 @@ import com.example.pccuong.appbook.R;
  * Created by PCCuong on 12/31/2016.
  */
 
-public class LoginActivity  extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     TabLayout tableLayout;
     ViewPager viewPager;
     Toolbar toolbar;
-   @Override
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
         tableLayout = (TabLayout) findViewById(R.id.tablogin);
-       viewPager = (ViewPager) findViewById(R.id.tabviewlogin);
-       toolbar = (Toolbar) findViewById(R.id.tollbarLogin);
-       setSupportActionBar(toolbar);
-       ViewPagerLogin viewPagerLogin = new ViewPagerLogin(getSupportFragmentManager());
-       viewPager.setAdapter(viewPagerLogin);
-       viewPagerLogin.notifyDataSetChanged();
-       tableLayout.setupWithViewPager(viewPager);
+        viewPager = (ViewPager) findViewById(R.id.tabviewlogin);
+        toolbar = (Toolbar) findViewById(R.id.tollbarLogin);
+        setSupportActionBar(toolbar);
 
 
-   }
+        ViewPagerLogin viewPagerLogin = new ViewPagerLogin(getSupportFragmentManager());
+        viewPager.setAdapter(viewPagerLogin);
+        viewPagerLogin.notifyDataSetChanged();
+        tableLayout.setupWithViewPager(viewPager);
+
+
+    }
 }
